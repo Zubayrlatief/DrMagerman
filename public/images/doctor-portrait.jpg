@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#dbeafe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8f4f8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#grad1)"/>
+  <circle cx="400" cy="350" r="120" fill="#2563eb" opacity="0.2"/>
+  <path d="M 400 300 Q 350 350 300 400 L 300 500 Q 350 550 400 600 Q 450 550 500 500 L 500 400 Q 450 350 400 300 Z" fill="#2563eb" opacity="0.3"/>
+  <text x="400" y="750" font-family="Arial, sans-serif" font-size="24" fill="#1e40af" text-anchor="middle" opacity="0.5">Doctor Portrait</text>
+  <text x="400" y="800" font-family="Arial, sans-serif" font-size="18" fill="#6b7280" text-anchor="middle" opacity="0.5">Add your image here</text>
+</svg>
+
