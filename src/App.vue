@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" class="app-root">
     <Header />
-    <main>
+    <main id="main-content" tabindex="-1">
       <router-view />
     </main>
     <Footer />
@@ -9,19 +9,28 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
+import { injectStructuredData } from './seo/structuredData'
+
+onMounted(() => {
+  injectStructuredData()
+})
 </script>
 
 <style scoped>
-#app {
+.app-root {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  overflow-x: clip;
 }
 
 main {
   flex: 1;
+  width: 100%;
 }
 </style>
 

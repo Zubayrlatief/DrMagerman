@@ -1,0 +1,5 @@
+# Dr Magerman — general practice, Cape Town
+User-agent: *
+Allow: /
+
+Sitemap: https://www.drmagerman.co.za/sitemap.xml

@@ -13,21 +13,15 @@
             <img 
               v-show="doctorImageLoaded"
               :src="doctorImage" 
-              alt="Dr. Magerman"
+              alt="Dr Magerman"
               @load="doctorImageLoaded = true"
               @error="doctorImageLoaded = false"
             />
-            <div class="image-overlay">
-              <div class="overlay-content">
-                <h3>Dr. Magerman</h3>
-                <p>Your Trusted Healthcare Provider</p>
-              </div>
-            </div>
           </div>
           <div class="about-hero-text">
-            <h1>About Dr. Magerman</h1>
+            <h1>About Dr Magerman</h1>
             <p class="lead">
-              With over 15 years of dedicated medical practice, Dr. Magerman has been 
+              With over 15 years of dedicated medical practice, Dr Magerman has been 
               serving the Cape Town community with compassion, expertise, and unwavering 
               commitment to patient care.
             </p>
@@ -281,7 +275,7 @@ const approachItems = ref([
 const testimonials = ref([
   {
     id: 1,
-    text: 'Dr. Magerman has been my family doctor for years. The care and attention to detail is exceptional. I always feel heard and well-cared for.',
+    text: 'Dr Magerman has been my family doctor for years. The care and attention to detail is exceptional. I always feel heard and well-cared for.',
     name: 'Sarah Johnson',
     location: 'Cape Town'
   },
@@ -293,7 +287,7 @@ const testimonials = ref([
   },
   {
     id: 3,
-    text: 'I appreciate how Dr. Magerman takes time to explain everything clearly. The follow-up care is outstanding, and I always feel confident in the treatment plan.',
+    text: 'I appreciate how Dr Magerman takes time to explain everything clearly. The follow-up care is outstanding, and I always feel confident in the treatment plan.',
     name: 'Emma Williams',
     location: 'Cape Town'
   }
@@ -308,7 +302,8 @@ const testimonials = ref([
 /* About Hero */
 .about-hero {
   padding: 4rem 0;
-  background: linear-gradient(135deg, var(--background-light) 0%, #ecfdf5 100%);
+  background: var(--clinical-hero-bg);
+  border-bottom: 2px solid var(--neo-ink);
 }
 
 .about-hero-content {
@@ -320,9 +315,9 @@ const testimonials = ref([
 
 .about-hero-image {
   position: relative;
-  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  border: 2px solid var(--neo-ink);
+  box-shadow: 6px 6px 0 0 var(--neo-ink);
 }
 
 .about-hero-image img {
@@ -331,28 +326,9 @@ const testimonials = ref([
   display: block;
 }
 
-.image-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  padding: 2rem;
-  color: #fff;
-}
-
-.overlay-content h3 {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-}
-
-.overlay-content p {
-  opacity: 0.9;
-}
-
 .about-hero-text h1 {
   font-size: 3rem;
-  color: var(--dark-blue);
+  color: var(--neo-ink);
   margin-bottom: 1.5rem;
 }
 
@@ -381,11 +357,11 @@ const testimonials = ref([
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  color: var(--primary-blue);
+  padding: 1rem 1.15rem;
+  background: var(--cb-paper);
+  border: 2px solid var(--neo-ink);
+  box-shadow: 3px 3px 0 0 var(--neo-ink);
+  color: var(--neo-ink);
 }
 
 .credential-item svg {
@@ -405,34 +381,36 @@ const testimonials = ref([
 
 .service-detail-card {
   display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 2.5rem;
-  padding: 2.5rem;
-  background: #f8f9fa;
-  border-radius: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  grid-template-columns: 90px 1fr;
+  gap: 2rem;
+  padding: 2rem 2.25rem;
+  background: var(--cb-paper);
+  border: 2px solid var(--neo-ink);
+  box-shadow: 4px 4px 0 0 var(--neo-ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .service-detail-card:hover {
-  transform: translateX(10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0 0 var(--cb-accent);
 }
 
 .service-detail-icon {
-  width: 100px;
-  height: 100px;
-  background: var(--primary-blue);
-  border-radius: 20px;
+  width: 80px;
+  height: 80px;
+  background: var(--cb-surface-2);
+  border: 2px solid var(--neo-ink);
+  box-shadow: 3px 3px 0 0 var(--neo-ink);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--cb-accent-deep);
   flex-shrink: 0;
 }
 
 .service-detail-content h3 {
   font-size: 1.5rem;
-  color: var(--dark-blue);
+  color: var(--neo-ink);
   margin-bottom: 1rem;
 }
 
@@ -460,14 +438,15 @@ const testimonials = ref([
   content: '✓';
   position: absolute;
   left: 0;
-  color: var(--accent-green);
+  color: var(--neo-ink);
   font-weight: bold;
 }
 
 /* Approach Section */
 .approach-section {
   padding: 5rem 0;
-  background: linear-gradient(135deg, var(--light-blue) 0%, #e8f4f8 100%);
+  background: var(--cb-paper);
+  border-top: 2px solid var(--neo-ink);
 }
 
 .approach-content {
@@ -479,7 +458,7 @@ const testimonials = ref([
 
 .approach-text h2 {
   font-size: 2.5rem;
-  color: var(--dark-blue);
+  color: var(--neo-ink);
   margin-bottom: 3rem;
 }
 
@@ -496,17 +475,22 @@ const testimonials = ref([
 }
 
 .approach-number {
-  font-size: 3rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  color: var(--primary-blue);
-  opacity: 0.3;
+  color: var(--neo-ink);
+  background: var(--cb-surface-2);
+  border: 2px solid var(--neo-ink);
+  box-shadow: 3px 3px 0 0 var(--neo-ink);
+  padding: 0.5rem 0.75rem;
   line-height: 1;
   flex-shrink: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  letter-spacing: 0.04em;
 }
 
 .approach-details h4 {
   font-size: 1.3rem;
-  color: var(--dark-blue);
+  color: var(--neo-ink);
   margin-bottom: 0.75rem;
 }
 
@@ -516,9 +500,9 @@ const testimonials = ref([
 }
 
 .approach-image {
-  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  border: 2px solid var(--neo-ink);
+  box-shadow: 6px 6px 0 0 var(--cb-accent);
 }
 
 .approach-image img {
@@ -530,7 +514,7 @@ const testimonials = ref([
 /* Testimonials */
 .testimonials {
   padding: 5rem 0;
-  background: #fff;
+  background: var(--cb-surface);
 }
 
 .testimonials-grid {
@@ -540,22 +524,23 @@ const testimonials = ref([
 }
 
 .testimonial-card {
-  background: #f8f9fa;
-  padding: 2.5rem;
-  border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--cb-paper);
+  padding: 2.25rem;
+  border: 2px solid var(--neo-ink);
+  box-shadow: 4px 4px 0 0 var(--neo-ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .testimonial-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0 0 var(--cb-accent);
 }
 
 .testimonial-rating {
-  color: #ffc107;
+  color: var(--neo-ink);
   font-size: 1.2rem;
   margin-bottom: 1rem;
+  letter-spacing: 0.08em;
 }
 
 .testimonial-text {
@@ -573,7 +558,7 @@ const testimonials = ref([
 }
 
 .testimonial-author strong {
-  color: var(--dark-blue);
+  color: var(--neo-ink);
   font-size: 1.1rem;
 }
 
@@ -585,25 +570,29 @@ const testimonials = ref([
 /* CTA Section */
 .cta-section {
   padding: 5rem 0;
-  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
-  color: #fff;
+  background: var(--clinical-hero-bg);
+  color: var(--neo-ink);
   text-align: center;
+  border-top: 2px solid var(--neo-ink);
 }
 
 .cta-content h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: var(--neo-ink);
 }
 
 .cta-content p {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   margin-bottom: 2rem;
-  opacity: 0.95;
+  color: var(--neo-ink);
+  opacity: 0.88;
+  font-weight: 600;
 }
 
 .btn-large {
-  padding: 1.25rem 3rem;
-  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.05rem;
 }
 
 @media (max-width: 968px) {
@@ -627,16 +616,72 @@ const testimonials = ref([
 }
 
 @media (max-width: 768px) {
+  .about-hero {
+    padding: 2.75rem 0;
+  }
+
   .about-hero-text h1 {
-    font-size: 2rem;
+    font-size: clamp(1.65rem, 6vw, 2rem);
+  }
+
+  .lead {
+    font-size: 1.1rem;
+  }
+
+  .services-detail,
+  .approach-section,
+  .testimonials {
+    padding: 3.25rem 0;
+  }
+
+  .service-detail-card {
+    padding: 1.5rem 1.25rem;
+    gap: 1.5rem;
+  }
+
+  .approach-item {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .approach-number {
+    align-self: flex-start;
   }
 
   .testimonials-grid {
     grid-template-columns: 1fr;
   }
 
+  .testimonial-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .cta-section {
+    padding: 3.25rem 0;
+  }
+
   .cta-content h2 {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 5.5vw, 2rem);
+  }
+
+  .cta-content .btn-large {
+    width: 100%;
+    max-width: 22rem;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero-text h1 {
+    font-size: 1.55rem;
+  }
+
+  .service-features {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-content p {
+    font-size: 1rem;
   }
 }
 </style>

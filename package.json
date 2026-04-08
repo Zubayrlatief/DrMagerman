@@ -1,7 +1,7 @@
 {
   "name": "dr-magerman-website",
   "version": "1.0.0",
-  "description": "Professional website for Dr. Magerman",
+  "description": "Professional website for Dr Magerman",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
