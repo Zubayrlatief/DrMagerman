@@ -19,6 +19,9 @@
             <p class="form-disclaimer">
               Please do not use this form for urgent or emergency medical concerns. In an emergency, contact your nearest emergency service immediately.
             </p>
+            <p class="form-popia">
+              Information you send is used only to respond to your enquiry and is processed in line with the Protection of Personal Information Act (POPIA) and the practice&rsquo;s privacy obligations. Do not include sensitive clinical details unless necessary.
+            </p>
             <form @submit.prevent="handleSubmit" class="contact-form">
               <div class="form-group">
                 <label for="name">Full Name *</label>
@@ -91,7 +94,7 @@
                   </div>
                   <div class="info-content">
                     <h4>Location</h4>
-                    <p>226 Thornton Road, Belthorn<br>Cape Town, 7460</p>
+                    <p>226 Thornton Road, Belthorn<br>Cape Town, 7784</p>
                     <p class="info-note">Corner of Lawson and Thornton Road<br>Building: Lawson Place</p>
                   </div>
                 </div>
@@ -133,13 +136,23 @@
                 </div>
                 <div class="hours-row">
                   <span class="day">Saturday</span>
-                  <span class="time">08:30 – 11:30</span>
+                  <span class="time"
+                    >08:30 – 11:30<br />
+                    <span class="time-note">1st and last Saturday of each month</span></span
+                  >
                 </div>
                 <div class="hours-row closed">
-                  <span class="day">Sunday &amp; Public Holidays</span>
+                  <span class="day">Sunday</span>
+                  <span class="time">Closed</span>
+                </div>
+                <div class="hours-row closed">
+                  <span class="day">Public holidays</span>
                   <span class="time">Closed</span>
                 </div>
               </div>
+              <p class="hours-disclaimer">
+                Closed on all public holidays, including when a 1st- or last-Saturday falls on a holiday.
+              </p>
             </div>
           </aside>
         </div>
@@ -147,7 +160,7 @@
         <section class="map-section neo-card" aria-labelledby="map-heading">
           <div class="map-section-head">
             <h3 id="map-heading">Find Us</h3>
-            <p class="map-lead">226 Thornton Road, Lawson Place, Belthorn, Cape Town</p>
+            <p class="map-lead">226 Thornton Road, Lawson Place, Belthorn, Cape Town 7784</p>
           </div>
           <div class="map-frame">
             <iframe
@@ -155,7 +168,7 @@
               class="map-iframe"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-              title="Map: Lawson Place, 226 Thornton Road, Belthorn, Cape Town"
+              title="Map: Lawson Place, 226 Thornton Road, Belthorn, Cape Town 7784"
               allowfullscreen
             />
           </div>
@@ -179,7 +192,7 @@
 import { ref, computed } from 'vue'
 
 const PRACTICE_ADDRESS =
-  '226 Thornton Road, Lawson Place, Belthorn, Cape Town 7460, South Africa'
+  '226 Thornton Road, Lawson Place, Belthorn, Cape Town 7784, South Africa'
 const MAP_LAT = -33.9843499
 const MAP_LON = 18.5121154
 
@@ -237,6 +250,7 @@ const handleSubmit = async () => {
 <style scoped>
 .contact {
   overflow-x: hidden;
+  max-width: 100%;
 }
 
 .contact-hero {
@@ -248,6 +262,8 @@ const handleSubmit = async () => {
 
 .contact-hero-inner {
   max-width: 40rem;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .hero-tag {
@@ -295,6 +311,12 @@ const handleSubmit = async () => {
   gap: 1.75rem;
   align-items: start;
   margin-bottom: 1.75rem;
+  min-width: 0;
+}
+
+.contact-form-section,
+.contact-sidebar {
+  min-width: 0;
 }
 
 .contact-sidebar {
@@ -324,6 +346,14 @@ const handleSubmit = async () => {
   border: var(--neo-border-thin);
 }
 
+.form-popia {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin: -0.5rem 0 1.25rem;
+  padding: 0 0.15rem;
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -347,6 +377,11 @@ const handleSubmit = async () => {
 .form-group input,
 .form-group select,
 .form-group textarea {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   padding: 0.8rem 0.95rem;
   border: var(--neo-border-thin);
   border-radius: 0;
@@ -404,6 +439,7 @@ const handleSubmit = async () => {
   display: flex;
   gap: 1rem;
   align-items: flex-start;
+  min-width: 0;
 }
 
 .info-icon {
@@ -417,6 +453,12 @@ const handleSubmit = async () => {
   flex-shrink: 0;
   box-shadow: var(--neo-shadow-sm);
   color: var(--cb-accent-deep);
+}
+
+.info-content {
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .info-content h4 {
@@ -476,6 +518,26 @@ const handleSubmit = async () => {
   font-size: 0.85rem;
 }
 
+.hours-row .time-note {
+  display: block;
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 0.3rem;
+  line-height: 1.4;
+  max-width: 14rem;
+  margin-left: auto;
+}
+
+.hours-disclaimer {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0.75rem 0 0;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--slate-200, #e2e8f0);
+}
+
 .map-section {
   padding: 1.75rem;
 }
@@ -498,10 +560,12 @@ const handleSubmit = async () => {
 
 .map-frame {
   position: relative;
+  width: 100%;
   border: var(--neo-border);
   box-shadow: var(--neo-shadow-sm);
   background: var(--neo-cream);
   height: 420px;
+  min-height: 200px;
 }
 
 @media (max-width: 900px) {
@@ -541,6 +605,12 @@ const handleSubmit = async () => {
   }
 }
 
+@media (max-width: 800px) {
+  .contact-sidebar {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 640px) {
   .contact-sidebar {
     grid-template-columns: 1fr;
@@ -553,6 +623,11 @@ const handleSubmit = async () => {
 
   .hours-row .time {
     text-align: left;
+  }
+
+  .hours-row .time-note {
+    margin-left: 0;
+    max-width: none;
   }
 
   .contact-hero {
@@ -579,7 +654,8 @@ const handleSubmit = async () => {
 
 @media (max-width: 480px) {
   .map-frame {
-    height: 260px;
+    min-height: 200px;
+    height: min(50vh, 280px);
   }
 
   .contact-form-section h2,

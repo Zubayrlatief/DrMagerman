@@ -100,6 +100,29 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -100px;
+  z-index: 2000;
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--cb-ink);
+  border: 2px solid var(--cb-line);
+  text-decoration: none !important;
+  box-shadow: var(--neo-shadow-sm);
+}
+
+.skip-link:focus {
+  top: 0.5rem;
+  outline: 2px solid var(--cb-focus);
+  outline-offset: 2px;
 }
 
 body {
@@ -114,6 +137,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
+  overflow-x: clip;
 }
 
 h1, h2, h3, h4, h5 {
@@ -140,9 +164,11 @@ a:hover {
 }
 
 .container {
+  width: 100%;
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 2rem;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
@@ -185,7 +211,7 @@ a:hover {
   border: var(--neo-border);
   letter-spacing: 0.02em;
   white-space: nowrap;
-  line-height: 1;
+  line-height: 1.2;
   box-shadow: var(--neo-shadow-sm);
 }
 
@@ -262,10 +288,23 @@ a:hover {
   line-height: 1.7;
 }
 
-img {
+img,
+video,
+canvas {
   max-width: 100%;
   height: auto;
+}
+
+img {
   object-fit: cover;
+}
+
+iframe,
+embed,
+object {
+  max-width: 100%;
+  border: 0;
+  vertical-align: bottom;
 }
 
 .image-fallback {
@@ -363,6 +402,14 @@ body.nav-open-lock {
   overscroll-behavior: none;
 }
 
+@media (max-width: 420px) {
+  .btn,
+  .btn-sm {
+    white-space: normal;
+    text-align: center;
+  }
+}
+
 @media (max-width: 480px) {
   .container {
     padding-left: max(0.875rem, env(safe-area-inset-left, 0px));
@@ -379,6 +426,13 @@ body.nav-open-lock {
 
   .section-header > p {
     font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding-left: max(0.7rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.7rem, env(safe-area-inset-right, 0px));
   }
 }
 
@@ -402,6 +456,10 @@ body.nav-open-lock {
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  }
+
+  .btn:hover,
+  .btn:active {
+    transform: none !important;
   }
 }

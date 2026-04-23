@@ -138,6 +138,16 @@
       </div>
     </section>
 
+    <!-- Careers -->
+    <section class="careers-section" id="careers" aria-label="Careers and vacancies">
+      <div class="container">
+        <div class="careers-card">
+          <h2>Careers</h2>
+          <p>There are no open vacancies. We are not hiring at this time. If positions become available, details will be shared on this page.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta-section">
       <div class="container">
@@ -297,6 +307,7 @@ const testimonials = ref([
 <style scoped>
 .about {
   overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* About Hero */
@@ -308,14 +319,20 @@ const testimonials = ref([
 
 .about-hero-content {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
   gap: 4rem;
   align-items: center;
+}
+
+.about-hero-text {
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .about-hero-image {
   position: relative;
   overflow: hidden;
+  min-width: 0;
   border: 2px solid var(--neo-ink);
   box-shadow: 6px 6px 0 0 var(--neo-ink);
 }
@@ -330,6 +347,8 @@ const testimonials = ref([
   font-size: 3rem;
   color: var(--neo-ink);
   margin-bottom: 1.5rem;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .lead {
@@ -362,6 +381,12 @@ const testimonials = ref([
   border: 2px solid var(--neo-ink);
   box-shadow: 3px 3px 0 0 var(--neo-ink);
   color: var(--neo-ink);
+  min-width: 0;
+}
+
+.credential-item span {
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .credential-item svg {
@@ -381,13 +406,14 @@ const testimonials = ref([
 
 .service-detail-card {
   display: grid;
-  grid-template-columns: 90px 1fr;
+  grid-template-columns: minmax(0, 90px) minmax(0, 1fr);
   gap: 2rem;
   padding: 2rem 2.25rem;
   background: var(--cb-paper);
   border: 2px solid var(--neo-ink);
   box-shadow: 4px 4px 0 0 var(--neo-ink);
   transition: transform 0.12s ease, box-shadow 0.12s ease;
+  min-width: 0;
 }
 
 .service-detail-card:hover {
@@ -408,6 +434,11 @@ const testimonials = ref([
   flex-shrink: 0;
 }
 
+.service-detail-content {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
 .service-detail-content h3 {
   font-size: 1.5rem;
   color: var(--neo-ink);
@@ -424,7 +455,7 @@ const testimonials = ref([
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
   gap: 0.75rem;
 }
 
@@ -451,9 +482,19 @@ const testimonials = ref([
 
 .approach-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 4rem;
   align-items: center;
+}
+
+.approach-text {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.approach-details {
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .approach-text h2 {
@@ -500,6 +541,7 @@ const testimonials = ref([
 }
 
 .approach-image {
+  min-width: 0;
   overflow: hidden;
   border: 2px solid var(--neo-ink);
   box-shadow: 6px 6px 0 0 var(--cb-accent);
@@ -519,7 +561,7 @@ const testimonials = ref([
 
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 2rem;
 }
 
@@ -567,6 +609,40 @@ const testimonials = ref([
   font-size: 0.9rem;
 }
 
+/* Careers */
+.careers-section {
+  padding: 3.5rem 0;
+  background: var(--cb-paper);
+  border-top: 2px solid var(--neo-ink);
+}
+
+.careers-card {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.75rem 2rem;
+  background: var(--cb-surface);
+  border: 2px solid var(--neo-ink);
+  box-shadow: 4px 4px 0 0 var(--neo-ink);
+  text-align: center;
+  min-width: 0;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+.careers-card h2 {
+  font-size: 1.45rem;
+  margin-bottom: 0.75rem;
+  color: var(--neo-ink);
+}
+
+.careers-card p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
 /* CTA Section */
 .cta-section {
   padding: 5rem 0;
@@ -576,10 +652,17 @@ const testimonials = ref([
   border-top: 2px solid var(--neo-ink);
 }
 
+.cta-content {
+  min-width: 0;
+  padding: 0 0.25rem;
+  box-sizing: border-box;
+}
+
 .cta-content h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   color: var(--neo-ink);
+  overflow-wrap: break-word;
 }
 
 .cta-content p {
@@ -630,8 +713,13 @@ const testimonials = ref([
 
   .services-detail,
   .approach-section,
-  .testimonials {
+  .testimonials,
+  .careers-section {
     padding: 3.25rem 0;
+  }
+
+  .careers-card {
+    padding: 1.35rem 1.25rem;
   }
 
   .service-detail-card {

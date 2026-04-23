@@ -73,7 +73,7 @@ Place the following images in the `public/images/` directory:
 
 ## Contact Information
 
-- **Location**: 226 Thornton Road, Belthorn, Cape Town, 7460
+- **Location**: 226 Thornton Road, Belthorn, Cape Town, 7784
 - **Phone**: 021 696 4132
 - **Email**: info@drmagerman.co.za
 
@@ -81,6 +81,7 @@ Place the following images in the `public/images/` directory:
 
 - Monday - Thursday: 09:00 – 12:45 | 15:00 – 17:45
 - Friday: 09:00 – 12:30
-- Saturday: 08:30 – 11:30
-- Sunday & Public Holidays: Closed
+- Saturday: 08:30 – 11:30 (1st and last Saturday of each month only)
+- Sunday: Closed
+- Public holidays: Closed (including when a 1st- or last-Saturday would fall on a holiday)
 

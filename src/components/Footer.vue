@@ -19,6 +19,9 @@
             Family &amp; General Practitioner<br>
             serving the Cape Town community.
           </p>
+          <p class="footer-careers" role="status" aria-label="Employment and vacancies">
+            <strong>Careers:</strong> There are no open vacancies.
+          </p>
         </div>
 
         <!-- Navigation -->
@@ -28,6 +31,7 @@
             <li><router-link to="/">Home</router-link></li>
             <li><router-link to="/about">About &amp; Services</router-link></li>
             <li><router-link to="/contact">Contact Us</router-link></li>
+            <li><router-link to="/about#careers">Careers &amp; vacancies</router-link></li>
             <li><router-link to="/contact" class="footer-link-accent">Book an Appointment →</router-link></li>
           </ul>
         </div>
@@ -40,7 +44,7 @@
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" fill="currentColor"/>
               </svg>
-              <span>226 Thornton Road, Belthorn<br>Cape Town, 7460</span>
+              <span>226 Thornton Road, Belthorn<br>Cape Town, 7784</span>
             </li>
             <li>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,15 +75,36 @@
             </li>
             <li>
               <span class="hours-day">Saturday</span>
-              <span class="hours-time">08:30–11:30</span>
+              <span class="hours-time"
+                >08:30–11:30 <span class="footer-hours-qual">(1st &amp; last of month)</span></span
+              >
             </li>
             <li class="hours-closed">
-              <span class="hours-day">Sun &amp; Public Holidays</span>
+              <span class="hours-day">Sunday</span>
+              <span class="hours-time">Closed</span>
+            </li>
+            <li class="hours-closed">
+              <span class="hours-day">Public holidays</span>
               <span class="hours-time">Closed</span>
             </li>
           </ul>
         </div>
 
+      </div>
+
+      <div class="footer-legal" role="complementary" aria-label="Medical and privacy information">
+        <p>
+          This website provides general information about the practice and is not a substitute for an in-person consultation or emergency care.
+          For medical emergencies, call
+          <a href="tel:10177">10177</a> or
+          <a href="tel:112">112</a>
+          — do not use email or the contact form for urgent matters.
+        </p>
+        <p>
+          Health practitioners in South Africa are registered with the
+          <a href="https://www.hpcsa.co.za/" target="_blank" rel="noopener noreferrer">Health Professions Council of South Africa (HPCSA)</a>.
+          Personal information is handled in line with the Protection of Personal Information Act (POPIA).
+        </p>
       </div>
 
       <!-- Bottom bar -->
@@ -115,9 +140,11 @@ const currentYear = computed(() => new Date().getFullYear())
   background: var(--neo-ink);
   color: #f5f5f5;
   padding: 3.5rem 0 0;
-  padding-bottom: env(safe-area-inset-bottom, 0);
+  padding-bottom: max(env(safe-area-inset-bottom, 0), 0.5rem);
   border-top: 2px solid var(--neo-ink);
   box-shadow: inset 0 4px 0 0 var(--cb-accent);
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .footer-grid {
@@ -163,6 +190,19 @@ const currentYear = computed(() => new Date().getFullYear())
   margin: 0;
 }
 
+.footer-careers {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+  margin: 1rem 0 0;
+  max-width: 18rem;
+}
+
+.footer-careers strong {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
+}
+
 .footer-col h4 {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.65rem;
@@ -186,6 +226,8 @@ const currentYear = computed(() => new Date().getFullYear())
   font-weight: 600;
   text-decoration: none !important;
   transition: color 0.12s ease;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .footer-col a:hover {
@@ -239,10 +281,51 @@ const currentYear = computed(() => new Date().getFullYear())
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.footer-hours-qual {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 0.2rem;
+  line-height: 1.35;
 }
 
 .hours-closed .hours-time {
   color: rgba(255, 255, 255, 0.4);
+}
+
+.footer-legal {
+  padding: 1.5rem 0 0;
+  margin-bottom: 1.5rem;
+  max-width: 48rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 1.5rem;
+}
+
+.footer-legal p {
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 0.9rem;
+}
+
+.footer-legal p:last-child {
+  margin-bottom: 0;
+}
+
+.footer-legal a {
+  color: #7dd3fc;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-legal a:hover {
+  color: #e2e8f0;
 }
 
 .footer-bottom {

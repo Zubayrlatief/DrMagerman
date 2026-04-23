@@ -5,7 +5,7 @@ import Contact from '../views/Contact.vue'
 import { applyRouteSeo } from '../seo/applySeo'
 
 const KW_GP =
-  'GP Cape Town, general practitioner Cape Town, family doctor Cape Town, Belthorn GP, doctor Belthorn, primary care Cape Town, HPCSA GP, Lawson Place medical practice'
+  'GP Cape Town, GP Athlone, family doctor Belthorn, general practitioner Western Cape, Belthorn medical practice, doctor Southern Suburbs, Lansdowne, Crawford, Rylands, primary care Cape Town, HPCSA GP, Lawson Place Thornton Road'
 
 const routes = [
   {
@@ -29,7 +29,7 @@ const routes = [
       seo: {
         title: 'About & Medical Services | Dr Magerman – GP Cape Town',
         description:
-          'Services from an experienced Cape Town GP: general consultations, preventive care, chronic disease management, health screenings, women\'s and men\'s health. Evidence-based family practice in Belthorn.',
+          'Services from an experienced Cape Town GP: general consultations, preventive care, chronic disease management, health screenings, women\'s and men\'s health. Evidence-based family practice in Belthorn. We have no open vacancies; careers information is on this page.',
         keywords: `${KW_GP}, medical services GP, chronic disease doctor Cape Town, health screening Cape Town`
       }
     }
@@ -42,7 +42,7 @@ const routes = [
       seo: {
         title: 'Contact, Location & Bookings | Dr Magerman – GP Belthorn Cape Town',
         description:
-          'Contact Dr Magerman\'s practice: 226 Thornton Road, Lawson Place, Belthorn, Cape Town 7460. Phone 021 696 4132, email info@drmagerman.co.za, consulting hours and map.',
+          'Contact Dr Magerman\'s practice: 226 Thornton Road, Lawson Place, Belthorn, Cape Town 7784. Phone 021 696 4132, email info@drmagerman.co.za, consulting hours and map.',
         keywords: `${KW_GP}, book GP appointment Cape Town, doctor contact Belthorn, Lawson Place Thornton Road`
       }
     }
@@ -51,7 +51,17 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  scrollBehavior(to) {
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth',
+        top: 80
+      }
+    }
+    return { top: 0 }
+  }
 })
 
 router.afterEach((to) => {

@@ -14,7 +14,8 @@
             </span>
             <h1 class="hero-title">Personalised Family Healthcare in Cape Town</h1>
             <p class="hero-subtitle">
-              Professional, evidence-based primary care from a trusted GP in Belthorn.
+              Professional, evidence-based primary care from a trusted GP in Belthorn—serving
+              patients from Athlone, the Southern Suburbs, and surrounding areas of Cape Town.
               We treat the whole person, not just the condition.
             </p>
             <div class="hero-cta">
@@ -184,15 +185,23 @@
               <span class="hours-day">Friday</span>
               <span class="hours-slot">09:00 – 12:30</span>
             </div>
-            <div class="hours-row">
+            <div class="hours-row hours-row--sat">
               <span class="hours-day">Saturday</span>
-              <span class="hours-slot">08:30 – 11:30</span>
+              <div class="hours-saturday-block">
+                <span class="hours-slot">08:30 – 11:30</span>
+                <span class="hours-sat-sub">Open on the 1st and last Saturday of each month only</span>
+              </div>
             </div>
             <div class="hours-row closed">
-              <span class="hours-day">Sunday &amp; Public Holidays</span>
+              <span class="hours-day">Sunday</span>
+              <span class="hours-closed-label">Closed</span>
+            </div>
+            <div class="hours-row closed">
+              <span class="hours-day">Public holidays</span>
               <span class="hours-closed-label">Closed</span>
             </div>
           </div>
+          <p class="hours-footnote">Closed on all public holidays, including when a 1st- or last-Saturday falls on a holiday.</p>
           <router-link to="/contact" class="btn btn-primary">Contact the Practice</router-link>
         </div>
       </div>
@@ -259,8 +268,8 @@ const features = ref([
   },
   {
     id: 4,
-    title: 'Convenient Belthorn Location',
-    description: 'Easily accessible on the corner of Lawson and Thornton Road, ample parking.'
+    title: 'Convenient for Belthorn, Athlone & Cape Town',
+    description: 'On the corner of Lawson and Thornton Road (Lawson Place), with parking and easy access for patients from the Southern Suburbs and beyond.'
   }
 ])
 </script>
@@ -284,7 +293,7 @@ const features = ref([
 
 .hero-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 5rem;
   align-items: center;
   position: relative;
@@ -294,8 +303,10 @@ const features = ref([
 /* Eyebrow */
 .hero-eyebrow {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.45rem;
+  max-width: 100%;
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.7rem;
   font-weight: 600;
@@ -309,6 +320,10 @@ const features = ref([
   margin-bottom: 1.25rem;
 }
 
+.hero-text {
+  min-width: 0;
+}
+
 .hero-title {
   font-size: 3.25rem;
   font-weight: 700;
@@ -316,6 +331,9 @@ const features = ref([
   line-height: 1.12;
   margin-bottom: 1.25rem;
   letter-spacing: -0.04em;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .hero-subtitle {
@@ -376,11 +394,13 @@ const features = ref([
 /* Image */
 .hero-image {
   position: relative;
+  min-width: 0;
 }
 
 .image-wrapper {
   position: relative;
   overflow: hidden;
+  min-width: 0;
   border: 2px solid var(--neo-ink);
   box-shadow: 6px 6px 0 0 var(--neo-ink);
   background: var(--cb-paper);
@@ -420,7 +440,7 @@ const features = ref([
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
   gap: 1.5rem;
   margin-bottom: 2.5rem;
 }
@@ -459,6 +479,11 @@ const features = ref([
   background: #e0f2fe;
 }
 
+.service-body {
+  min-width: 0;
+  flex: 1;
+}
+
 .service-body h3 {
   font-size: 1.05rem;
   color: var(--color-text);
@@ -486,9 +511,17 @@ const features = ref([
 
 .why-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 5rem;
   align-items: center;
+}
+
+.why-text {
+  min-width: 0;
+}
+
+.why-stats-panel {
+  min-width: 0;
 }
 
 .why-text h2 {
@@ -516,6 +549,11 @@ const features = ref([
   display: flex;
   gap: 1rem;
   align-items: flex-start;
+}
+
+.feature-item > div:last-of-type {
+  min-width: 0;
+  flex: 1;
 }
 
 .feature-check {
@@ -561,6 +599,11 @@ const features = ref([
   margin-bottom: 2.25rem;
   padding-bottom: 1.75rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  min-width: 0;
+}
+
+.stat-card-header > div:last-of-type {
+  min-width: 0;
 }
 
 .stat-card-icon {
@@ -623,6 +666,7 @@ const features = ref([
 
 .stat-card-footer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.85rem;
@@ -630,6 +674,11 @@ const features = ref([
   font-weight: 600;
   padding-top: 1.5rem;
   border-top: 3px solid rgba(255, 255, 255, 0.12);
+}
+
+.stat-card-footer span {
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .stat-card-footer svg {
@@ -653,7 +702,10 @@ const features = ref([
   border: 2px solid var(--neo-ink);
   box-shadow: 6px 6px 0 0 var(--neo-ink);
   max-width: 760px;
+  width: 100%;
+  box-sizing: border-box;
   margin: 0 auto;
+  min-width: 0;
 }
 
 .hours-card-header {
@@ -720,8 +772,12 @@ const features = ref([
 
 .hours-times {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
   gap: 0.5rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .hours-slot {
@@ -747,6 +803,31 @@ const features = ref([
   font-weight: 500;
   color: var(--slate-400);
   font-size: 0.9rem;
+}
+
+.hours-saturday-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  text-align: right;
+}
+
+.hours-sat-sub {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  line-height: 1.35;
+  max-width: 17rem;
+}
+
+.hours-footnote {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin: 0 0 1.5rem;
+  padding: 0.75rem 0 0;
+  border-top: 1px solid var(--slate-200);
 }
 
 /* ══════════════════════════════════════
@@ -828,8 +909,28 @@ const features = ref([
     gap: 0.5rem;
   }
 
+  .hours-saturday-block {
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+  }
+
+  .hours-sat-sub {
+    max-width: none;
+  }
+
+  .hours-times {
+    justify-content: flex-start;
+  }
+
   .why-text h2 {
     font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .why-text .btn {
+    width: 100%;
+    max-width: 22rem;
+    box-sizing: border-box;
   }
 }
 
@@ -880,6 +981,17 @@ const features = ref([
 
   .stat-num {
     font-size: 1.85rem;
+  }
+
+  .hours-card .btn {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .image-badge {
+    max-width: calc(100% - 2rem);
+    flex-wrap: wrap;
   }
 }
 

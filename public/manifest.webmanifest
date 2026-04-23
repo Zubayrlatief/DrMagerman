@@ -1,0 +1,18 @@
+{
+  "name": "Dr Magerman | General Practice, Belthorn, Cape Town",
+  "short_name": "Dr Magerman",
+  "description": "Family and general practitioner (GP) in Belthorn, serving Athlone, Lansdowne, Crawford, Rylands, and the greater Cape Town area. Bookings, hours, and practice information.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#f8fafc",
+  "theme_color": "#0f172a",
+  "lang": "en-ZA",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

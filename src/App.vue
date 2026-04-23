@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="app-root">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <Header />
     <main id="main-content" tabindex="-1">
       <router-view />
@@ -26,11 +27,15 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   overflow-x: clip;
+  min-width: 0;
+  max-width: 100%;
 }
 
 main {
   flex: 1;
+  min-width: 0;
   width: 100%;
+  max-width: 100%;
 }
 </style>
 

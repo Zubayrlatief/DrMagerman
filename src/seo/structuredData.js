@@ -22,9 +22,13 @@ export function injectStructuredData() {
       '@id': `${siteUrl}/#practice`,
       name: 'Dr Magerman',
       description:
-        'Family and general practitioner (GP) offering primary care, chronic disease management, preventive care, and health screenings in Belthorn, Cape Town.',
+        'Family and general practitioner (GP) offering primary care, chronic disease management, preventive care, and health screenings in Belthorn, Western Cape—serving patients from Athlone, Lansdowne, Crawford, Rylands, and the greater Cape Town area. Saturday: 08:30–11:30 on the 1st and last Saturday of each month only. Closed on Sundays, all public holidays, and when a scheduled Saturday falls on a public holiday. Medical practitioners in South Africa are registered with the Health Professions Council of South Africa (HPCSA).',
       url: siteUrl,
       image: absoluteUrl('/images/doctor-portrait.jpg'),
+      logo: {
+        '@type': 'ImageObject',
+        url: absoluteUrl('/favicon.svg')
+      },
       telephone: '+27-21-696-4132',
       email: 'info@drmagerman.co.za',
       priceRange: '$$',
@@ -32,7 +36,7 @@ export function injectStructuredData() {
         '@type': 'PostalAddress',
         streetAddress: '226 Thornton Road, Lawson Place',
         addressLocality: 'Belthorn, Cape Town',
-        postalCode: '7460',
+        postalCode: '7784',
         addressRegion: 'Western Cape',
         addressCountry: 'ZA'
       },
@@ -44,9 +48,12 @@ export function injectStructuredData() {
       medicalSpecialty: ['Family medicine', 'General practice'],
       areaServed: [
         { '@type': 'City', name: 'Cape Town' },
+        { '@type': 'AdministrativeArea', name: 'Western Cape' },
         { '@type': 'Place', name: 'Belthorn' },
+        { '@type': 'Place', name: 'Athlone' },
         { '@type': 'Place', name: 'Lansdowne' },
-        { '@type': 'Place', name: 'Crawford' }
+        { '@type': 'Place', name: 'Crawford' },
+        { '@type': 'Place', name: 'Rylands' }
       ],
       openingHoursSpecification: [
         {
@@ -66,12 +73,6 @@ export function injectStructuredData() {
           dayOfWeek: 'Friday',
           opens: '09:00',
           closes: '12:30'
-        },
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: 'Saturday',
-          opens: '08:30',
-          closes: '11:30'
         }
       ],
     },
@@ -81,7 +82,7 @@ export function injectStructuredData() {
       name: 'Dr Magerman – Family GP Cape Town',
       url: siteUrl,
       description:
-        'Official site for Dr Magerman, general practitioner in Belthorn, Cape Town. Bookings, consulting hours, and practice information.',
+        'Official site for Dr Magerman, family GP in Belthorn, Western Cape—appointments, consulting hours, and information for patients from Athlone, Lansdowne, Crawford, Rylands, and the greater Cape Town area.',
       inLanguage: 'en-ZA',
       publisher: { '@id': `${siteUrl}/#practice` },
       creator: { '@id': ZAR_MEDIA_ID }

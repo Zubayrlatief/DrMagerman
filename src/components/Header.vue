@@ -76,8 +76,9 @@ onUnmounted(() => {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 0;
-  gap: 1.5rem;
+  gap: 0.75rem 1.5rem;
   position: relative;
+  min-width: 0;
 }
 
 .logo {
@@ -86,6 +87,7 @@ onUnmounted(() => {
   gap: 0.75rem;
   text-decoration: none !important;
   flex-shrink: 0;
+  min-width: 0;
 }
 
 .logo-icon {
@@ -111,6 +113,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   line-height: 1.1;
+  min-width: 0;
 }
 
 .logo-name {
@@ -242,6 +245,8 @@ onUnmounted(() => {
     margin-top: 0.35rem;
     text-align: center;
     justify-content: center;
+    width: 100%;
+    max-width: 100%;
   }
 }
 

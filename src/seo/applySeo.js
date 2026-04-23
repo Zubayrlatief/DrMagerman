@@ -47,13 +47,13 @@ export function applyRouteSeo(to) {
 
   const description =
     meta.description ||
-    'Dr Magerman is a family and general practitioner (GP) in Belthorn, Cape Town. Book appointments, view hours, and get compassionate primary care.'
+    'Dr Magerman is a family and general practitioner (GP) in Belthorn, Western Cape, serving Athlone, Lansdowne, Crawford, Rylands, and the greater Cape Town area. Book appointments, view hours, and primary care in line with professional and POPIA expectations.'
 
   setMetaName('description', description)
   setMetaName(
     'keywords',
     meta.keywords ||
-      'GP Cape Town, general practitioner Cape Town, family doctor Cape Town, Dr Magerman, Belthorn'
+      'GP Cape Town, GP Athlone, family doctor Belthorn, general practitioner Western Cape, Dr Magerman, primary care Southern Suburbs, doctor Lansdowne, Crawford, Rylands, Lawson Place, HPCSA'
   )
 
   const path = to.path === '/' ? '/' : to.path
@@ -67,7 +67,7 @@ export function applyRouteSeo(to) {
   setMetaProperty('og:title', title)
   setMetaProperty('og:description', description)
   setMetaProperty('og:image', ogImage)
-  setMetaProperty('og:image:alt', meta.ogImageAlt || 'Dr Magerman – general practitioner, Cape Town')
+  setMetaProperty('og:image:alt', meta.ogImageAlt || 'Dr Magerman – family and general practitioner, Belthorn, Cape Town (Western Cape)')
 
   setMetaName('twitter:card', 'summary_large_image')
   setMetaName('twitter:title', title)
