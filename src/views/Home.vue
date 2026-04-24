@@ -2,7 +2,30 @@
   <div class="home">
 
     <!-- ═══ HERO ═══ -->
-    <section class="hero">
+    <section class="hero" @pointermove="onHeroPointerMove" @pointerleave="onHeroPointerLeave">
+      <div
+        class="hero-medical-bg"
+        aria-hidden="true"
+        :style="{
+          '--hero-pointer-x': `${heroPointer.x}%`,
+          '--hero-pointer-y': `${heroPointer.y}%`
+        }"
+      >
+        <div class="hero-bg-grid"></div>
+        <div class="hero-bg-glow"></div>
+        <div class="hero-bg-wave"></div>
+        <div class="hero-bg-icons">
+          <span class="medical-icon medical-icon--cross">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM17 13H13V17H11V13H7V11H11V7H13V11H17V13Z" fill="currentColor"/></svg>
+          </span>
+          <span class="medical-icon medical-icon--heart">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12.1 18.55L12 18.65L11.89 18.55C7.14 14.24 4 11.39 4 8.5C4 6.5 5.5 5 7.5 5C9.04 5 10.54 5.99 11.07 7.36H12.93C13.46 5.99 14.96 5 16.5 5C18.5 5 20 6.5 20 8.5C20 11.39 16.86 14.24 12.1 18.55Z" fill="currentColor"/></svg>
+          </span>
+          <span class="medical-icon medical-icon--stethoscope">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 3H17V8C17 9.66 15.66 11 14 11S11 9.66 11 8V3H9V8C9 10.03 10.27 11.75 12 12.44V15C12 18.31 14.69 21 18 21S24 18.31 24 15H22C22 17.2 20.2 19 18 19S14 17.2 14 15V12.44C15.73 11.75 17 10.03 17 8V5H19V3ZM6 3V8C6 9.66 4.66 11 3 11S0 9.66 0 8V3H2V8C2 8.55 2.45 9 3 9S4 8.55 4 8V3H6Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+      </div>
       <div class="container">
         <div class="hero-content">
 
@@ -53,6 +76,9 @@
                 v-show="doctorImageLoaded"
                 :src="doctorImage"
                 alt="Dr Magerman – Family GP Cape Town"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
                 @load="doctorImageLoaded = true"
                 @error="doctorImageLoaded = false"
               />
@@ -211,17 +237,28 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import doctorImage from '../images/Dr-Meagan-Magerman-2.jpg'
 
 const doctorImageLoaded = ref(false)
+const heroPointer = ref({ x: 50, y: 35 })
 
-onMounted(() => {
-  const img = new Image()
-  img.src = doctorImage
-  img.onload = () => doctorImageLoaded.value = true
-  img.onerror = () => doctorImageLoaded.value = false
-})
+const onHeroPointerMove = (event) => {
+  const target = event.currentTarget
+  if (!target) return
+  const rect = target.getBoundingClientRect()
+  if (!rect.width || !rect.height) return
+  const x = ((event.clientX - rect.left) / rect.width) * 100
+  const y = ((event.clientY - rect.top) / rect.height) * 100
+  heroPointer.value = {
+    x: Math.min(100, Math.max(0, x)),
+    y: Math.min(100, Math.max(0, y))
+  }
+}
+
+const onHeroPointerLeave = () => {
+  heroPointer.value = { x: 50, y: 35 }
+}
 
 const services = ref([
   {
@@ -288,7 +325,101 @@ const features = ref([
   padding: 5rem 0 4.5rem;
   position: relative;
   overflow: hidden;
-  border-bottom: 2px solid var(--neo-ink);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--neo-ink);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero-medical-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  --hero-pointer-x: 50%;
+  --hero-pointer-y: 35%;
+}
+
+.hero-bg-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.55;
+}
+
+.hero-bg-glow {
+  position: absolute;
+  width: 520px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  left: calc(var(--hero-pointer-x) - 260px);
+  top: calc(var(--hero-pointer-y) - 260px);
+  background: radial-gradient(circle, rgba(3, 105, 161, 0.18) 0%, rgba(3, 105, 161, 0.08) 34%, transparent 72%);
+  filter: blur(2px);
+  transition: left 220ms ease, top 220ms ease;
+}
+
+.hero-bg-wave {
+  position: absolute;
+  inset: auto 0 1.8rem 0;
+  height: 80px;
+  opacity: 0.55;
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(12, 74, 110, 0.12) 10%, rgba(12, 74, 110, 0.25) 16%, transparent 18%, transparent 30%, rgba(12, 74, 110, 0.32) 32%, rgba(12, 74, 110, 0.14) 37%, transparent 40%, transparent 100%);
+  animation: ecgShift 10s linear infinite;
+}
+
+.hero-bg-icons {
+  position: absolute;
+  inset: 0;
+}
+
+.medical-icon {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  color: rgba(12, 74, 110, 0.24);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(12, 74, 110, 0.2);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 2px 2px 0 0 rgba(15, 23, 42, 0.18);
+  backdrop-filter: blur(2px);
+}
+
+.medical-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.medical-icon--cross {
+  top: 16%;
+  left: 7%;
+  animation: floatMedical 9s ease-in-out infinite;
+}
+
+.medical-icon--heart {
+  top: 22%;
+  right: 9%;
+  animation: floatMedical 11s ease-in-out infinite reverse;
+}
+
+.medical-icon--stethoscope {
+  bottom: 22%;
+  left: 42%;
+  animation: floatMedical 12s ease-in-out infinite;
 }
 
 .hero-content {
@@ -298,6 +429,16 @@ const features = ref([
   align-items: center;
   position: relative;
   z-index: 1;
+}
+
+@keyframes floatMedical {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+@keyframes ecgShift {
+  0% { transform: translateX(-8%); }
+  100% { transform: translateX(8%); }
 }
 
 /* Eyebrow */
@@ -401,6 +542,7 @@ const features = ref([
   position: relative;
   overflow: hidden;
   min-width: 0;
+  aspect-ratio: 4 / 5;
   border: 2px solid var(--neo-ink);
   box-shadow: 6px 6px 0 0 var(--neo-ink);
   background: var(--cb-paper);
@@ -408,10 +550,9 @@ const features = ref([
 
 .image-wrapper img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   object-fit: cover;
-  min-height: 520px;
 }
 
 .image-badge {
@@ -856,6 +997,17 @@ const features = ref([
     padding: 3.25rem 0 3rem;
   }
 
+  .hero-bg-wave {
+    inset: auto 0 1rem 0;
+    height: 60px;
+    opacity: 0.45;
+  }
+
+  .medical-icon {
+    width: 34px;
+    height: 34px;
+  }
+
   .hero-title {
     font-size: clamp(1.65rem, 7vw, 2.25rem);
   }
@@ -939,6 +1091,18 @@ const features = ref([
     padding: 2.75rem 0 2.5rem;
   }
 
+  .hero-bg-glow {
+    width: 360px;
+    left: calc(var(--hero-pointer-x) - 180px);
+    top: calc(var(--hero-pointer-y) - 180px);
+  }
+
+  .medical-icon--cross,
+  .medical-icon--heart,
+  .medical-icon--stethoscope {
+    opacity: 0.75;
+  }
+
   .hero-title {
     font-size: 1.65rem;
   }
@@ -971,7 +1135,7 @@ const features = ref([
   }
 
   .image-wrapper img {
-    min-height: 280px;
+    min-height: 0;
     object-fit: cover;
   }
 
@@ -1002,6 +1166,17 @@ const features = ref([
 
   .feature-item {
     gap: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .medical-icon,
+  .hero-bg-wave {
+    animation: none !important;
+  }
+
+  .hero-bg-glow {
+    transition: none !important;
   }
 }
 </style>

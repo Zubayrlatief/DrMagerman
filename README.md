@@ -47,9 +47,7 @@ npm run build
 ├── public/
 │   └── images/
 │       ├── doctor-portrait.jpg (add your doctor image here)
-│       ├── medical-facility.jpg (add generic medical images)
-│       ├── medical-care.jpg
-│       └── map-placeholder.jpg
+│       └── medical-care.jpg
 ├── index.html
 ├── package.json
 └── vite.config.js
@@ -60,9 +58,7 @@ npm run build
 Place the following images in the `public/images/` directory:
 
 - `doctor-portrait.jpg` - Professional portrait of Dr. Magerman (the one you provided)
-- `medical-facility.jpg` - Modern medical facility image
 - `medical-care.jpg` - Healthcare/medical care image
-- `map-placeholder.jpg` - Location map or placeholder
 
 ## Color Scheme
 
@@ -84,4 +80,37 @@ Place the following images in the `public/images/` directory:
 - Saturday: 08:30 – 11:30 (1st and last Saturday of each month only)
 - Sunday: Closed
 - Public holidays: Closed (including when a 1st- or last-Saturday would fall on a holiday)
+
+## Vercel Deployment
+
+This project is ready for Vercel static hosting (Vite + Vue Router history mode).
+
+### 1) Import project into Vercel
+
+- Framework preset: `Vite`
+- Build command: `npm run build`
+- Output directory: `dist`
+
+### 2) Add environment variables in Vercel
+
+- `VITE_SITE_URL=https://www.drmagerman.co.za`
+- `VITE_GOOGLE_MAPS_EMBED_KEY=<your_key>` (optional; leave blank to use OpenStreetMap fallback)
+
+### 3) Verify before deploy
+
+```bash
+npm run verify:predeploy
+npm run build
+```
+
+### 4) Deploy
+
+Push to your connected branch (for example `main`) and Vercel will deploy automatically.
+
+Notes:
+- `vercel.json` includes SPA fallback routing so deep links like `/about` and `/contact` do not 404.
+- If your production domain changes, update:
+  - `VITE_SITE_URL`
+  - `public/robots.txt`
+  - `public/sitemap.xml`
 

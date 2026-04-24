@@ -32,6 +32,11 @@ function setCanonical(href) {
   el.setAttribute('href', href)
 }
 
+function setRobotsMeta(content) {
+  setMetaName('robots', content)
+  setMetaName('googlebot', content)
+}
+
 /**
  * @param {import('vue-router').RouteLocationNormalizedLoaded} to
  */
@@ -59,9 +64,11 @@ export function applyRouteSeo(to) {
   const path = to.path === '/' ? '/' : to.path
   const canonical = `${siteUrl}${path === '/' ? '' : path}`
   setCanonical(canonical)
+  setRobotsMeta(meta.robots || 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')
 
   const ogImage = meta.ogImage || absoluteUrl('/images/doctor-portrait.jpg')
   setMetaProperty('og:type', meta.ogType || 'website')
+  setMetaProperty('og:site_name', 'Dr Magerman – GP Cape Town')
   setMetaProperty('og:locale', 'en_ZA')
   setMetaProperty('og:url', canonical)
   setMetaProperty('og:title', title)

@@ -86,6 +86,33 @@ export function injectStructuredData() {
       inLanguage: 'en-ZA',
       publisher: { '@id': `${siteUrl}/#practice` },
       creator: { '@id': ZAR_MEDIA_ID }
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${siteUrl}/#home`,
+      url: siteUrl,
+      name: 'Home',
+      isPartOf: { '@id': `${siteUrl}/#website` },
+      about: { '@id': `${siteUrl}/#practice` },
+      inLanguage: 'en-ZA'
+    },
+    {
+      '@type': 'AboutPage',
+      '@id': `${siteUrl}/about#webpage`,
+      url: `${siteUrl}/about`,
+      name: 'About & Medical Services',
+      isPartOf: { '@id': `${siteUrl}/#website` },
+      about: { '@id': `${siteUrl}/#practice` },
+      inLanguage: 'en-ZA'
+    },
+    {
+      '@type': 'ContactPage',
+      '@id': `${siteUrl}/contact#webpage`,
+      url: `${siteUrl}/contact`,
+      name: 'Contact & Appointments',
+      isPartOf: { '@id': `${siteUrl}/#website` },
+      about: { '@id': `${siteUrl}/#practice` },
+      inLanguage: 'en-ZA'
     }
   ]
 

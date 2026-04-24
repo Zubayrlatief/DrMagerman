@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import About from '../views/About.vue'
-import Contact from '../views/Contact.vue'
 import { applyRouteSeo } from '../seo/applySeo'
+
+const Home = () => import('../views/Home.vue')
+const About = () => import('../views/About.vue')
+const Contact = () => import('../views/Contact.vue')
+const NotFound = () => import('../views/NotFound.vue')
 
 const KW_GP =
   'GP Cape Town, GP Athlone, family doctor Belthorn, general practitioner Western Cape, Belthorn medical practice, doctor Southern Suburbs, Lansdowne, Crawford, Rylands, primary care Cape Town, HPCSA GP, Lawson Place Thornton Road'
@@ -44,6 +46,20 @@ const routes = [
         description:
           'Contact Dr Magerman\'s practice: 226 Thornton Road, Lawson Place, Belthorn, Cape Town 7784. Phone 021 696 4132, email info@drmagerman.co.za, consulting hours and map.',
         keywords: `${KW_GP}, book GP appointment Cape Town, doctor contact Belthorn, Lawson Place Thornton Road`
+      }
+    }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFound,
+    meta: {
+      seo: {
+        title: 'Page Not Found | Dr Magerman',
+        description:
+          'The page you requested could not be found. Return to the homepage or contact Dr Magerman’s practice in Belthorn, Cape Town.',
+        keywords: 'Dr Magerman, page not found, GP Cape Town',
+        robots: 'noindex, follow'
       }
     }
   }

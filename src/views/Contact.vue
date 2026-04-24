@@ -4,8 +4,8 @@
       <div class="container">
         <div class="contact-hero-inner">
           <span class="hero-tag">Contact</span>
-          <h1>Get in Touch</h1>
-          <p>We are here to help. Reach out to schedule an appointment or ask any questions.</p>
+          <h1>Book an Appointment or Send an Enquiry</h1>
+          <p>Contact the practice directly for bookings, follow-ups, and general questions.</p>
         </div>
       </div>
     </section>
@@ -14,8 +14,8 @@
       <div class="container">
         <div class="contact-top">
           <div class="contact-form-section neo-card">
-            <h2>Send Us a Message</h2>
-            <p class="form-description">Fill out the form below and we will get back to you as soon as possible.</p>
+            <h2>Send a Message</h2>
+            <p class="form-description">Complete the form and your default email app will open with your message pre-filled.</p>
             <p class="form-disclaimer">
               Please do not use this form for urgent or emergency medical concerns. In an emergency, contact your nearest emergency service immediately.
             </p>
@@ -29,6 +29,7 @@
                   type="text"
                   id="name"
                   v-model="form.name"
+                  autocomplete="name"
                   required
                   placeholder="Your full name"
                 />
@@ -39,6 +40,7 @@
                   type="email"
                   id="email"
                   v-model="form.email"
+                  autocomplete="email"
                   required
                   placeholder="your.email@example.com"
                 />
@@ -49,6 +51,8 @@
                   type="tel"
                   id="phone"
                   v-model="form.phone"
+                  inputmode="tel"
+                  autocomplete="tel"
                   required
                   placeholder="021 XXX XXXX"
                 />
@@ -58,7 +62,7 @@
                 <select id="subject" v-model="form.subject" required>
                   <option value="">Select a subject</option>
                   <option value="appointment">Book Appointment</option>
-                  <option value="general">General Inquiry</option>
+                  <option value="general">General Enquiry</option>
                   <option value="prescription">Prescription Refill</option>
                   <option value="other">Other</option>
                 </select>
@@ -70,11 +74,11 @@
                   v-model="form.message"
                   required
                   rows="6"
-                  placeholder="Please provide details about your inquiry..."
+                  placeholder="Please provide details about your enquiry..."
                 ></textarea>
               </div>
               <button type="submit" class="btn btn-primary" :disabled="submitting">
-                {{ submitting ? 'Sending...' : 'Send Message' }}
+                {{ submitting ? 'Opening...' : 'Send Message' }}
               </button>
               <div v-if="submitStatus" class="submit-status" :class="submitStatus.type">
                 {{ submitStatus.message }}
@@ -225,25 +229,29 @@ const handleSubmit = async () => {
   submitting.value = true
   submitStatus.value = null
 
-  setTimeout(() => {
-    submitting.value = false
-    submitStatus.value = {
-      type: 'success',
-      message: 'Thank you! Your message has been sent. We will get back to you soon.'
-    }
+  const subjectLabelMap = {
+    appointment: 'Book Appointment',
+    general: 'General Enquiry',
+    prescription: 'Prescription Refill',
+    other: 'Other'
+  }
 
-    form.value = {
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
-    }
+  const subject = subjectLabelMap[form.value.subject] || 'Website Enquiry'
+  const body = [
+    `Name: ${form.value.name}`,
+    `Email: ${form.value.email}`,
+    `Phone: ${form.value.phone}`,
+    '',
+    form.value.message
+  ].join('\n')
 
-    setTimeout(() => {
-      submitStatus.value = null
-    }, 5000)
-  }, 1500)
+  window.location.href = `mailto:info@drmagerman.co.za?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+
+  submitStatus.value = {
+    type: 'success',
+    message: 'Your email app should now be open. If not, please email info@drmagerman.co.za or call 021 696 4132.'
+  }
+  submitting.value = false
 }
 </script>
 

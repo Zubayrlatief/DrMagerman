@@ -13,7 +13,10 @@
             <img 
               v-show="doctorImageLoaded"
               :src="doctorImage" 
-              alt="Dr Magerman"
+              alt="Dr Magerman, family and general practitioner in Cape Town"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
               @load="doctorImageLoaded = true"
               @error="doctorImageLoaded = false"
             />
@@ -21,14 +24,18 @@
           <div class="about-hero-text">
             <h1>About Dr Magerman</h1>
             <p class="lead">
-              With over 15 years of dedicated medical practice, Dr Magerman has been 
-              serving the Cape Town community with compassion, expertise, and unwavering 
-              commitment to patient care.
+              With more than 15 years in general practice, Dr Magerman serves
+              the Cape Town community with compassion, clinical expertise, and
+              an unwavering commitment to high-quality care.
             </p>
             <p>
-              Our practice is built on the foundation of trust, professionalism, and 
-              personalized attention. We believe that every patient deserves the highest 
-              quality of medical care in a comfortable and welcoming environment.
+              The practice is built on trust, professionalism, and personalised care.
+              Each consultation is designed to be clear, respectful, and practical,
+              so patients can make confident decisions about their health.
+            </p>
+            <p>
+              We focus on evidence-based medicine, preventive health, and continuity
+              of care for individuals and families in Belthorn and surrounding areas.
             </p>
             <div class="credentials">
               <div class="credential-item">
@@ -107,7 +114,9 @@
             <img 
               v-show="careImageLoaded"
               src="/images/medical-care.jpg" 
-              alt="Quality medical care"
+              alt="Clinical consultation and evidence-based primary healthcare"
+              loading="lazy"
+              decoding="async"
               @load="careImageLoaded = true"
               @error="careImageLoaded = false"
             />
@@ -116,22 +125,22 @@
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
+    <!-- Patient Commitments -->
+    <section class="testimonials" aria-labelledby="patient-commitments-heading">
       <div class="container">
         <div class="section-header">
-          <h2>What Our Patients Say</h2>
-          <p>Trusted by thousands of satisfied patients</p>
+          <h2 id="patient-commitments-heading">What You Can Expect at Every Visit</h2>
+          <p>Clear standards of care for every patient and every consultation.</p>
         </div>
         <div class="testimonials-grid">
-          <div class="testimonial-card" v-for="testimonial in testimonials" :key="testimonial.id">
+          <div class="testimonial-card" v-for="commitment in patientCommitments" :key="commitment.id">
             <div class="testimonial-rating">
               <span v-for="n in 5" :key="n">★</span>
             </div>
-            <p class="testimonial-text">"{{ testimonial.text }}"</p>
+            <p class="testimonial-text">{{ commitment.text }}</p>
             <div class="testimonial-author">
-              <strong>{{ testimonial.name }}</strong>
-              <span>{{ testimonial.location }}</span>
+              <strong>{{ commitment.title }}</strong>
+              <span>{{ commitment.detail }}</span>
             </div>
           </div>
         </div>
@@ -152,8 +161,8 @@
     <section class="cta-section">
       <div class="container">
         <div class="cta-content">
-          <h2>Ready to Experience Quality Healthcare?</h2>
-          <p>Book your appointment today and take the first step towards better health.</p>
+          <h2>Ready to Book Your Appointment?</h2>
+          <p>Contact the practice to schedule your consultation with Dr Magerman in Belthorn, Cape Town.</p>
           <router-link to="/contact" class="btn btn-primary btn-large">Schedule an Appointment</router-link>
         </div>
       </div>
@@ -162,23 +171,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import doctorImage from '../images/Dr-Meagan-Magerman-2.jpg'
 
 const doctorImageLoaded = ref(false)
 const careImageLoaded = ref(false)
-
-onMounted(() => {
-  const doctorImg = new Image()
-  doctorImg.src = doctorImage
-  doctorImg.onload = () => doctorImageLoaded.value = true
-  doctorImg.onerror = () => doctorImageLoaded.value = false
-
-  const careImg = new Image()
-  careImg.src = '/images/medical-care.jpg'
-  careImg.onload = () => careImageLoaded.value = true
-  careImg.onerror = () => careImageLoaded.value = false
-})
 
 const detailedServices = ref([
   {
@@ -282,24 +279,24 @@ const approachItems = ref([
   }
 ])
 
-const testimonials = ref([
+const patientCommitments = ref([
   {
     id: 1,
-    text: 'Dr Magerman has been my family doctor for years. The care and attention to detail is exceptional. I always feel heard and well-cared for.',
-    name: 'Sarah Johnson',
-    location: 'Cape Town'
+    text: 'Consultations are thorough and unhurried, with enough time to discuss your symptoms, concerns, and treatment options clearly.',
+    title: 'Thorough Consultations',
+    detail: 'Focused, evidence-based primary care'
   },
   {
     id: 2,
-    text: 'Professional, compassionate, and thorough. The best medical care I\'ve experienced. The entire practice makes you feel comfortable and valued.',
-    name: 'Michael Chen',
-    location: 'Belthorn'
+    text: 'Treatment plans are practical and personalised, with clear explanations so you can make informed decisions about your health.',
+    title: 'Clear Treatment Plans',
+    detail: 'Shared decision-making and clear communication'
   },
   {
     id: 3,
-    text: 'I appreciate how Dr Magerman takes time to explain everything clearly. The follow-up care is outstanding, and I always feel confident in the treatment plan.',
-    name: 'Emma Williams',
-    location: 'Cape Town'
+    text: 'Follow-up care is structured and consistent to help monitor progress and support long-term health outcomes.',
+    title: 'Consistent Follow-Up',
+    detail: 'Continuity of care over time'
   }
 ])
 </script>
@@ -333,14 +330,16 @@ const testimonials = ref([
   position: relative;
   overflow: hidden;
   min-width: 0;
+  aspect-ratio: 4 / 5;
   border: 2px solid var(--neo-ink);
   box-shadow: 6px 6px 0 0 var(--neo-ink);
 }
 
 .about-hero-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: cover;
 }
 
 .about-hero-text h1 {
@@ -543,14 +542,16 @@ const testimonials = ref([
 .approach-image {
   min-width: 0;
   overflow: hidden;
+  aspect-ratio: 16 / 11;
   border: 2px solid var(--neo-ink);
   box-shadow: 6px 6px 0 0 var(--cb-accent);
 }
 
 .approach-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: cover;
 }
 
 /* Testimonials */
