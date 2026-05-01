@@ -95,6 +95,7 @@ This project is ready for Vercel static hosting (Vite + Vue Router history mode)
 
 - `VITE_SITE_URL=https://www.drmagerman.co.za`
 - `VITE_GOOGLE_MAPS_EMBED_KEY=<your_key>` (optional; leave blank to use OpenStreetMap fallback)
+- `VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX` (optional; enables GA4 page tracking)
 - `SMTP_HOST=mail.drmagerman.co.za`
 - `SMTP_PORT=465`
 - `SMTP_USER=info@drmagerman.co.za`

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { applyRouteSeo } from '../seo/applySeo'
+import { trackPageView } from '../analytics'
 
 const Home = () => import('../views/Home.vue')
 const About = () => import('../views/About.vue')
@@ -82,6 +83,7 @@ const router = createRouter({
 
 router.afterEach((to) => {
   applyRouteSeo(to)
+  trackPageView(to.fullPath)
 })
 
 export default router
