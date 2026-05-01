@@ -1,5 +1,13 @@
 const nodemailer = require('nodemailer')
 
+const safeErrorDetails = (error) => ({
+  message: error?.message,
+  code: error?.code,
+  command: error?.command,
+  responseCode: error?.responseCode,
+  response: error?.response
+})
+
 const SUBJECT_LABELS = {
   appointment: 'Book Appointment',
   general: 'General Enquiry',
@@ -37,8 +45,13 @@ module.exports = async (req, res) => {
       auth: {
         user: smtpUser,
         pass: smtpPass
-      }
+      },
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 15000
     })
+
+    await transporter.verify()
 
     const selectedSubject = SUBJECT_LABELS[subject] || 'Website Enquiry'
 
@@ -80,6 +93,7 @@ module.exports = async (req, res) => {
 
     return res.status(200).json({ ok: true })
   } catch (error) {
-    return res.status(500).json({ error: 'Failed to send your enquiry. Please try again.' })
+    console.error('[api/contact] mail send failed', safeErrorDetails(error))
+    return res.status(500).json({ error: 'Failed to send your enquiry. Please try again.', code: error?.code || 'SMTP_SEND_FAILED' })
   }
 }
