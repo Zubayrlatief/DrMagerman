@@ -15,7 +15,7 @@
         <div class="contact-top">
           <div class="contact-form-section neo-card">
             <h2>Send a Message</h2>
-            <p class="form-description">Complete the form and your default email app will open with your message pre-filled.</p>
+            <p class="form-description">Complete the form and we will send your enquiry directly to the practice email address.</p>
             <p class="form-disclaimer">
               Please do not use this form for urgent or emergency medical concerns. In an emergency, contact your nearest emergency service immediately.
             </p>
@@ -78,7 +78,7 @@
                 ></textarea>
               </div>
               <button type="submit" class="btn btn-primary" :disabled="submitting">
-                {{ submitting ? 'Opening...' : 'Send Message' }}
+                {{ submitting ? 'Sending...' : 'Send Message' }}
               </button>
               <div v-if="submitStatus" class="submit-status" :class="submitStatus.type">
                 {{ submitStatus.message }}
@@ -229,28 +229,40 @@ const handleSubmit = async () => {
   submitting.value = true
   submitStatus.value = null
 
-  const subjectLabelMap = {
-    appointment: 'Book Appointment',
-    general: 'General Enquiry',
-    prescription: 'Prescription Refill',
-    other: 'Other'
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(form.value)
+    })
+
+    const result = await response.json()
+
+    if (!response.ok) {
+      throw new Error(result?.error || 'Failed to send your enquiry.')
+    }
+
+    submitStatus.value = {
+      type: 'success',
+      message: 'Your message was sent successfully. We will contact you shortly.'
+    }
+
+    form.value = {
+      name: '',
+      email: '',
+      phone: '',
+      subject: '',
+      message: ''
+    }
+  } catch (error) {
+    submitStatus.value = {
+      type: 'error',
+      message: error instanceof Error ? error.message : 'We could not send your message. Please email info@drmagerman.co.za or call 021 696 4132.'
+    }
   }
 
-  const subject = subjectLabelMap[form.value.subject] || 'Website Enquiry'
-  const body = [
-    `Name: ${form.value.name}`,
-    `Email: ${form.value.email}`,
-    `Phone: ${form.value.phone}`,
-    '',
-    form.value.message
-  ].join('\n')
-
-  window.location.href = `mailto:info@drmagerman.co.za?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-
-  submitStatus.value = {
-    type: 'success',
-    message: 'Your email app should now be open. If not, please email info@drmagerman.co.za or call 021 696 4132.'
-  }
   submitting.value = false
 }
 </script>
