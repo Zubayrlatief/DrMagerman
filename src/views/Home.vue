@@ -35,15 +35,15 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" fill="currentColor"/></svg>
               General Practice &middot; Cape Town
             </span>
-            <h1 class="hero-title">Personalised Family Healthcare in Cape Town</h1>
+            <h1 class="hero-title">Trusted General Practitioner in Cape Town</h1>
             <p class="hero-subtitle">
-              Professional, evidence-based primary care from a trusted GP in Belthorn—serving
+              Personalised, evidence-based primary care from an experienced family GP in Belthorn—serving
               patients from Athlone, the Southern Suburbs, and surrounding areas of Cape Town.
               We treat the whole person, not just the condition.
             </p>
             <div class="hero-cta">
-              <router-link to="/contact" class="btn btn-primary btn-lg">Book an Appointment</router-link>
-              <router-link to="/about" class="btn btn-ghost btn-lg">Our Services</router-link>
+              <router-link to="/contact" class="btn btn-primary btn-lg">Book a GP Appointment</router-link>
+              <router-link to="/about" class="btn btn-ghost btn-lg">GP Services Cape Town</router-link>
             </div>
 
             <div class="trust-row">
@@ -75,7 +75,7 @@
               <img
                 v-show="doctorImageLoaded"
                 :src="doctorImage"
-                alt="Dr Magerman – Family GP Cape Town"
+                alt="Dr Magerman – General Practitioner in Cape Town, Family GP"
                 loading="eager"
                 fetchpriority="high"
                 decoding="async"
@@ -115,7 +115,7 @@
           </div>
         </div>
         <div class="services-cta">
-          <router-link to="/about" class="btn btn-secondary">View All Services</router-link>
+          <router-link to="/about" class="btn btn-secondary">View All GP Services</router-link>
         </div>
       </div>
     </section>
@@ -141,7 +141,7 @@
                 </div>
               </li>
             </ul>
-            <router-link to="/about" class="btn btn-primary">Learn More About the Practice</router-link>
+            <router-link to="/about" class="btn btn-primary">About Our General Practice</router-link>
           </div>
 
           <!-- Right: stat card (always visible, no broken image) -->
@@ -228,7 +228,7 @@
             </div>
           </div>
           <p class="hours-footnote">Closed on all public holidays, including when a 1st- or last-Saturday falls on a holiday.</p>
-          <router-link to="/contact" class="btn btn-primary">Contact the Practice</router-link>
+          <router-link to="/contact" class="btn btn-primary">Contact Our GP Practice</router-link>
         </div>
       </div>
     </section>

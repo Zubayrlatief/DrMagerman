@@ -8,7 +8,7 @@ const Contact = () => import('../views/Contact.vue')
 const NotFound = () => import('../views/NotFound.vue')
 
 const KW_GP =
-  'GP Cape Town, GP Athlone, family doctor Belthorn, general practitioner Western Cape, Belthorn medical practice, doctor Southern Suburbs, Lansdowne, Crawford, Rylands, primary care Cape Town, HPCSA GP, Lawson Place Thornton Road'
+  'general practitioner Cape Town, GP Cape Town, general practitioner near me, family doctor Cape Town, GP Athlone, GP Belthorn, general practitioner Western Cape, doctor Southern Suburbs, Lansdowne, Crawford, Rylands, primary care Cape Town, HPCSA GP, Lawson Place Thornton Road'
 
 const routes = [
   {
@@ -17,10 +17,10 @@ const routes = [
     component: Home,
     meta: {
       seo: {
-        title: 'Dr Magerman | Family GP & General Practitioner, Belthorn Cape Town',
+        title: 'Dr Magerman | General Practitioner Cape Town – Family GP in Belthorn',
         description:
-          'Family and general practitioner (GP) in Belthorn, Cape Town. Personalised primary care, chronic disease management, preventive health, and bookings at Lawson Place, Thornton Road.',
-        keywords: `${KW_GP}, Dr Magerman`
+          'Dr Magerman is a trusted general practitioner in Cape Town, offering personalised primary care, chronic disease management, preventive health, and same-day bookings. Family GP practice at Lawson Place, Thornton Road, Belthorn – serving Athlone, Lansdowne, Crawford & Rylands.',
+        keywords: `${KW_GP}, Dr Magerman, book GP Cape Town`
       }
     }
   },
@@ -30,10 +30,10 @@ const routes = [
     component: About,
     meta: {
       seo: {
-        title: 'About & Medical Services | Dr Magerman – GP Cape Town',
+        title: 'Medical Services | General Practitioner Cape Town – Dr Magerman',
         description:
-          'Services from an experienced Cape Town GP: general consultations, preventive care, chronic disease management, health screenings, women\'s and men\'s health. Evidence-based family practice in Belthorn. We have no open vacancies; careers information is on this page.',
-        keywords: `${KW_GP}, medical services GP, chronic disease doctor Cape Town, health screening Cape Town`
+          'Comprehensive medical services from a qualified general practitioner in Cape Town: consultations, preventive care, chronic disease management, health screenings, women\'s & men\'s health. Evidence-based family practice in Belthorn, Western Cape.',
+        keywords: `${KW_GP}, medical services Cape Town, chronic disease doctor Cape Town, health screening Cape Town, GP services`
       }
     }
   },
@@ -43,10 +43,10 @@ const routes = [
     component: Contact,
     meta: {
       seo: {
-        title: 'Contact, Location & Bookings | Dr Magerman – GP Belthorn Cape Town',
+        title: 'Contact & Book Appointment | General Practitioner Cape Town – Dr Magerman',
         description:
-          'Contact Dr Magerman\'s practice: 226 Thornton Road, Lawson Place, Belthorn, Cape Town 7784. Phone 021 696 4132, email info@drmagerman.co.za, consulting hours and map.',
-        keywords: `${KW_GP}, book GP appointment Cape Town, doctor contact Belthorn, Lawson Place Thornton Road`
+          'Book an appointment with Dr Magerman, general practitioner in Cape Town. Located at 226 Thornton Road, Lawson Place, Belthorn 7784. Phone 021 696 4132, email info@drmagerman.co.za. Walk-ins welcome during consulting hours.',
+        keywords: `${KW_GP}, book GP appointment Cape Town, doctor contact Belthorn, walk-in GP Cape Town, Lawson Place Thornton Road`
       }
     }
   },

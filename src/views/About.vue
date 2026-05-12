@@ -163,7 +163,7 @@
         <div class="cta-content">
           <h2>Ready to Book Your Appointment?</h2>
           <p>Contact the practice to schedule your consultation with Dr Magerman in Belthorn, Cape Town.</p>
-          <router-link to="/contact" class="btn btn-primary btn-large">Schedule an Appointment</router-link>
+          <router-link to="/contact" class="btn btn-primary btn-large">Book a GP Appointment in Cape Town</router-link>
         </div>
       </div>
     </section>

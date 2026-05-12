@@ -3,6 +3,9 @@
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <Header />
     <main id="main-content" tabindex="-1">
+      <div class="container">
+        <Breadcrumb />
+      </div>
       <router-view />
     </main>
     <Footer />
@@ -13,6 +16,7 @@
 import { onMounted } from 'vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
+import Breadcrumb from './components/Breadcrumb.vue'
 import { injectStructuredData } from './seo/structuredData'
 
 onMounted(() => {

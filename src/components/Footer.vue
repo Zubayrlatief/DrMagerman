@@ -29,10 +29,10 @@
           <h4>Navigation</h4>
           <ul>
             <li><router-link to="/">Home</router-link></li>
-            <li><router-link to="/about">About &amp; Services</router-link></li>
-            <li><router-link to="/contact">Contact Us</router-link></li>
-            <li><router-link to="/about#careers">Careers &amp; vacancies</router-link></li>
-            <li><router-link to="/contact" class="footer-link-accent">Book an Appointment →</router-link></li>
+            <li><router-link to="/about">GP Medical Services</router-link></li>
+            <li><router-link to="/contact">Contact Our Practice</router-link></li>
+            <li><router-link to="/about#careers">Careers &amp; Vacancies</router-link></li>
+            <li><router-link to="/contact" class="footer-link-accent">Book GP Appointment →</router-link></li>
           </ul>
         </div>
 

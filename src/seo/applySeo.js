@@ -46,19 +46,19 @@ export function applyRouteSeo(to) {
 
   const title =
     meta.title ||
-    'Dr Magerman | Family GP & General Practitioner, Cape Town'
+    'Dr Magerman | General Practitioner Cape Town – Family GP in Belthorn'
 
   document.title = title
 
   const description =
     meta.description ||
-    'Dr Magerman is a family and general practitioner (GP) in Belthorn, Western Cape, serving Athlone, Lansdowne, Crawford, Rylands, and the greater Cape Town area. Book appointments, view hours, and primary care in line with professional and POPIA expectations.'
+    'Dr Magerman is a trusted general practitioner in Cape Town, offering personalised primary care, chronic disease management, preventive health, and same-day bookings. Family GP practice at Lawson Place, Thornton Road, Belthorn – serving Athlone, Lansdowne, Crawford & Rylands.'
 
   setMetaName('description', description)
   setMetaName(
     'keywords',
     meta.keywords ||
-      'GP Cape Town, GP Athlone, family doctor Belthorn, general practitioner Western Cape, Dr Magerman, primary care Southern Suburbs, doctor Lansdowne, Crawford, Rylands, Lawson Place, HPCSA'
+      'general practitioner Cape Town, GP Cape Town, general practitioner near me, family doctor Cape Town, GP Athlone, GP Belthorn, general practitioner Western Cape, doctor Southern Suburbs, Lansdowne, Crawford, Rylands, primary care Cape Town, HPCSA GP, Dr Magerman'
   )
 
   const path = to.path === '/' ? '/' : to.path
@@ -68,13 +68,13 @@ export function applyRouteSeo(to) {
 
   const ogImage = meta.ogImage || absoluteUrl('/images/doctor-portrait.jpg')
   setMetaProperty('og:type', meta.ogType || 'website')
-  setMetaProperty('og:site_name', 'Dr Magerman – GP Cape Town')
+  setMetaProperty('og:site_name', 'Dr Magerman – General Practitioner Cape Town')
   setMetaProperty('og:locale', 'en_ZA')
   setMetaProperty('og:url', canonical)
   setMetaProperty('og:title', title)
   setMetaProperty('og:description', description)
   setMetaProperty('og:image', ogImage)
-  setMetaProperty('og:image:alt', meta.ogImageAlt || 'Dr Magerman – family and general practitioner, Belthorn, Cape Town (Western Cape)')
+  setMetaProperty('og:image:alt', meta.ogImageAlt || 'Dr Magerman – General Practitioner in Cape Town, Family GP in Belthorn, Western Cape')
 
   setMetaName('twitter:card', 'summary_large_image')
   setMetaName('twitter:title', title)
