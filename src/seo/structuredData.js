@@ -115,15 +115,7 @@ export function injectStructuredData() {
         'Official website for Dr Magerman, general practitioner in Cape Town. Book appointments, view consulting hours, and access information about GP services in Belthorn, Western Cape.',
       inLanguage: 'en-ZA',
       publisher: { '@id': `${siteUrl}/#practice` },
-      creator: { '@id': ZAR_MEDIA_ID },
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: {
-          '@type': 'EntryPoint',
-          urlTemplate: `${siteUrl}/?q={search_term_string}`
-        },
-        'query-input': 'required name=search_term_string'
-      }
+      creator: { '@id': ZAR_MEDIA_ID }
     },
     {
       '@type': 'SiteNavigationElement',
