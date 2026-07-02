@@ -2,9 +2,9 @@
 export const TEMPORARY_CLOSURE = {
   enabled: true,
   start: '2026-07-16',
-  end: '2026-07-27',
-  label: '16–27 July 2026',
-  resumeDate: '28 July 2026'
+  end: '2026-07-26',
+  label: '16–26 July 2026',
+  resumeDate: 'Monday, 27 July 2026'
 }
 
 function toLocalDayString(date) {
