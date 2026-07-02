@@ -129,6 +129,7 @@
 
             <div class="hours-card neo-card">
               <h3>Operating Hours</h3>
+              <HoursClosureNotice variant="compact" />
               <div class="hours-list">
                 <div class="hours-row">
                   <span class="day">Monday – Thursday</span>
@@ -194,6 +195,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import HoursClosureNotice from '../components/HoursClosureNotice.vue'
 
 const PRACTICE_ADDRESS =
   '226 Thornton Road, Lawson Place, Belthorn, Cape Town 7784, South Africa'

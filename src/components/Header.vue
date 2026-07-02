@@ -64,9 +64,6 @@ onUnmounted(() => {
   background: var(--cb-paper);
   border-bottom: 2px solid var(--neo-ink);
   box-shadow: 0 3px 0 0 var(--neo-ink);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
   padding-left: env(safe-area-inset-left, 0);
   padding-right: env(safe-area-inset-right, 0);
 }

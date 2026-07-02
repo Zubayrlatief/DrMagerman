@@ -198,6 +198,7 @@
               <p>Walk-ins welcome during open hours</p>
             </div>
           </div>
+          <HoursClosureNotice />
           <div class="hours-grid">
             <div class="hours-row">
               <span class="hours-day">Monday – Thursday</span>
@@ -239,6 +240,7 @@
 <script setup>
 import { ref } from 'vue'
 import doctorImage from '../images/Dr-Meagan-Magerman-2.jpg'
+import HoursClosureNotice from '../components/HoursClosureNotice.vue'
 
 const doctorImageLoaded = ref(false)
 const heroPointer = ref({ x: 50, y: 35 })

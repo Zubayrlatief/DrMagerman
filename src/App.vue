@@ -1,7 +1,10 @@
 <template>
   <div id="app" class="app-root">
     <a class="skip-link" href="#main-content">Skip to main content</a>
-    <Header />
+    <div class="site-top">
+      <HoursClosureNotice variant="banner" />
+      <Header />
+    </div>
     <main id="main-content" tabindex="-1">
       <div class="container">
         <Breadcrumb />
@@ -17,6 +20,7 @@ import { onMounted } from 'vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import Breadcrumb from './components/Breadcrumb.vue'
+import HoursClosureNotice from './components/HoursClosureNotice.vue'
 import { injectStructuredData } from './seo/structuredData'
 
 onMounted(() => {
@@ -33,6 +37,12 @@ onMounted(() => {
   overflow-x: clip;
   min-width: 0;
   max-width: 100%;
+}
+
+.site-top {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 main {

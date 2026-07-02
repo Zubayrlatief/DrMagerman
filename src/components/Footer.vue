@@ -64,6 +64,7 @@
         <!-- Hours -->
         <div class="footer-col">
           <h4>Consulting Hours</h4>
+          <HoursClosureNotice variant="compact" />
           <ul class="hours-list">
             <li>
               <span class="hours-day">Mon – Thu</span>
@@ -132,6 +133,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import HoursClosureNotice from './HoursClosureNotice.vue'
 const currentYear = computed(() => new Date().getFullYear())
 </script>
 
