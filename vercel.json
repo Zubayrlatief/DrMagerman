@@ -1,11 +1,15 @@
 {
-  "routes": [
+  "redirects": [
     {
-      "handle": "filesystem"
-    },
+      "source": "/review",
+      "destination": "https://search.google.com/local/writereview?placeid=ChIJKywsnrJczB0R0SmgAY1V3hg",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
     {
-      "src": "/.*",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
