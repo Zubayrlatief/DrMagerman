@@ -15,15 +15,78 @@ const SUBJECT_LABELS = {
   other: 'Other'
 }
 
+const FIELD_LIMITS = {
+  name: 150,
+  email: 254,
+  phone: 50,
+  message: 5000
+}
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+const RATE_LIMIT_MAX = 5
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000
+
+// In-memory, so best-effort only: the count resets whenever the serverless
+// instance is recycled, but it still stops bursts against a warm instance.
+const recentByIp = new Map()
+
+const isRateLimited = (ip) => {
+  const now = Date.now()
+  const cutoff = now - RATE_LIMIT_WINDOW_MS
+  for (const [key, timestamps] of recentByIp) {
+    const active = timestamps.filter((t) => t > cutoff)
+    if (active.length === 0) recentByIp.delete(key)
+    else recentByIp.set(key, active)
+  }
+  const attempts = recentByIp.get(ip) || []
+  if (attempts.length >= RATE_LIMIT_MAX) return true
+  attempts.push(now)
+  recentByIp.set(ip, attempts)
+  return false
+}
+
+const getClientIp = (req) => {
+  const forwarded = req.headers['x-forwarded-for']
+  if (typeof forwarded === 'string' && forwarded.length > 0) {
+    return forwarded.split(',')[0].trim()
+  }
+  return req.socket?.remoteAddress || 'unknown'
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const { name, email, phone, subject, message } = req.body || {}
+  const { name, email, phone, subject, message, company } = req.body || {}
+
+  // Honeypot filled in — a bot. Pretend success so it doesn't adapt.
+  if (typeof company === 'string' && company.trim().length > 0) {
+    return res.status(200).json({ ok: true })
+  }
 
   if (!name || !email || !phone || !subject || !message) {
     return res.status(400).json({ error: 'Please complete all required fields.' })
+  }
+
+  for (const [field, limit] of Object.entries(FIELD_LIMITS)) {
+    const value = req.body[field]
+    if (typeof value !== 'string' || value.length > limit) {
+      return res.status(400).json({ error: 'One of the fields is too long. Please shorten it and try again.' })
+    }
+  }
+
+  if (!EMAIL_PATTERN.test(email.trim())) {
+    return res.status(400).json({ error: 'Please enter a valid email address.' })
+  }
+
+  if (!SUBJECT_LABELS[subject]) {
+    return res.status(400).json({ error: 'Please select a valid subject.' })
+  }
+
+  if (isRateLimited(getClientIp(req))) {
+    return res.status(429).json({ error: 'Too many messages sent. Please wait a few minutes and try again, or call the practice on 021 696 4132.' })
   }
 
   const smtpHost = process.env.SMTP_HOST

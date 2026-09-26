@@ -26,6 +26,12 @@ export function initAnalytics() {
   isInitialized = true
 }
 
+export function trackEvent(eventName, params = {}) {
+  if (typeof window === 'undefined' || !isInitialized || !window.gtag || !measurementId) return
+
+  window.gtag('event', eventName, params)
+}
+
 export function trackPageView(path) {
   if (typeof window === 'undefined' || !isInitialized || !window.gtag || !measurementId) return
 
