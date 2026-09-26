@@ -1,6 +1,6 @@
 /** Temporary closure — remove or set `enabled: false` after the period ends. */
 export const TEMPORARY_CLOSURE = {
-  enabled: true,
+  enabled: false,
   start: '2026-07-16',
   end: '2026-07-26',
   label: '16–26 July 2026',
