@@ -6,14 +6,16 @@
 <title>Review Card — Dr Magerman</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #0f172a;
     --paper: #fffdf7;
     --sky: #0369a1;
-    --sky-wash: #e0f2fe;
-    --gold: #f59e0b;
+    --sky-deep: #0c4a6e;
+    --sky-wash: #e8f4fb;
+    --gold: #d97706;
+    --hairline: #cbd5e1;
   }
 
   * { box-sizing: border-box; }
@@ -42,229 +44,360 @@
   .sheet {
     width: 194mm;
     margin: 1rem auto 2rem;
-    padding: 6mm;
+    padding: 5mm;
     background: #fff;
+  }
+
+  /* ═══════════ SHEET 1 — TENT CARD ═══════════ */
+
+  .tent {
+    border: 1px dashed #94a3b8;
+    position: relative;
+  }
+
+  .tent-panel {
+    height: 128mm;
+    background: var(--paper);
+    padding: 9mm 14mm 8mm;
     display: flex;
     flex-direction: column;
-    gap: 8mm;
-  }
-
-  .cut { border: 1px dashed #94a3b8; padding: 4mm; }
-
-  /* ── Counter card (A5-ish, for the reception desk) ── */
-  .card-large {
-    background: var(--paper);
-    border: 0.8mm solid var(--ink);
-    box-shadow: 2.5mm 2.5mm 0 0 var(--ink);
-    padding: 10mm 12mm;
-    display: grid;
-    grid-template-columns: 1fr 58mm;
-    gap: 10mm;
     align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
   }
 
-  .eyebrow {
-    display: inline-block;
-    font-size: 8pt;
+  .tent-panel--top { transform: rotate(180deg); }
+
+  .fold-line {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    padding: 1.2mm 6mm;
+  }
+
+  .fold-line::before,
+  .fold-line::after {
+    content: '';
+    flex: 1;
+    border-top: 0.4mm dashed var(--hairline);
+  }
+
+  .fold-label {
+    font-size: 6pt;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    background: var(--sky-wash);
-    border: 0.5mm solid var(--ink);
-    padding: 1.5mm 3mm;
-    margin-bottom: 5mm;
+    color: #94a3b8;
   }
 
-  .card-large h1 {
-    font-size: 26pt;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+  /* faint clinical grid, echoing the website hero */
+  .tent-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(15, 23, 42, 0.035) 0.3mm, transparent 0.3mm),
+      linear-gradient(rgba(15, 23, 42, 0.035) 0.3mm, transparent 0.3mm);
+    background-size: 9mm 9mm;
+    pointer-events: none;
+  }
+
+  .tent-panel > * { position: relative; }
+
+  .panel-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 2.5mm;
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sky-deep);
+    margin-bottom: 4mm;
+  }
+
+  .panel-eyebrow::before,
+  .panel-eyebrow::after {
+    content: '';
+    width: 9mm;
+    border-top: 0.45mm solid var(--sky-deep);
+  }
+
+  .panel-title {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 600;
+    font-size: 25pt;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 3mm;
+  }
+
+  .panel-sub {
+    font-size: 9.5pt;
+    line-height: 1.5;
     margin: 0 0 4mm;
-  }
-
-  .card-large p {
-    font-size: 11pt;
-    line-height: 1.55;
-    margin: 0 0 5mm;
-    max-width: 34ch;
+    max-width: 74mm;
+    color: #334155;
   }
 
   .stars {
-    font-size: 16pt;
-    letter-spacing: 0.12em;
+    font-size: 13pt;
+    letter-spacing: 0.18em;
     color: var(--gold);
-    margin-bottom: 2mm;
+    margin-bottom: 4mm;
   }
 
-  .qr-box {
+  .qr-frame {
     background: #fff;
-    border: 0.8mm solid var(--ink);
-    box-shadow: 2mm 2mm 0 0 var(--sky);
-    padding: 4mm;
-    text-align: center;
+    border: 0.6mm solid var(--ink);
+    box-shadow: 1.8mm 1.8mm 0 0 var(--sky);
+    padding: 3mm;
+    width: 44mm;
   }
 
-  .qr-box svg { display: block; width: 100%; height: auto; }
+  .qr-frame svg { display: block; width: 100%; height: auto; }
 
-  .qr-caption {
-    font-size: 8.5pt;
+  .scan-line {
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+    margin-top: 4mm;
+    font-size: 8pt;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-top: 3mm;
+    letter-spacing: 0.16em;
+    color: var(--ink);
   }
+
+  .scan-line svg { width: 4.2mm; height: 4.2mm; }
 
   .url {
     font-family: 'IBM Plex Mono', Consolas, monospace;
     font-weight: 600;
-    font-size: 10pt;
+    font-size: 9pt;
     color: var(--sky);
+    margin-top: 1.5mm;
   }
 
-  .card-large .practice-line {
-    font-size: 8.5pt;
-    color: #475569;
-    border-top: 0.4mm solid var(--ink);
+  .panel-footer {
+    margin-top: auto;
+    width: 100%;
     padding-top: 3mm;
-    margin: 4mm 0 0;
+    font-size: 7pt;
+    letter-spacing: 0.04em;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3mm;
   }
 
-  /* ── Mini cards (business-card size, hand to patients) ── */
-  .mini-row {
+  .ecg {
+    flex: 1;
+    max-width: 26mm;
+    height: 5mm;
+    color: var(--sky);
+    opacity: 0.85;
+  }
+
+  .ecg svg { width: 100%; height: 100%; display: block; }
+
+  /* ═══════════ SHEET 2 — HANDOUT MINIS ═══════════ */
+
+  .mini-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 6mm;
   }
 
+  .cut { border: 1px dashed #94a3b8; }
+
   .card-mini {
     background: var(--paper);
-    border: 0.6mm solid var(--ink);
-    box-shadow: 1.5mm 1.5mm 0 0 var(--ink);
+    height: 57mm;
     padding: 5mm 6mm;
     display: grid;
-    grid-template-columns: 1fr 30mm;
+    grid-template-columns: 1fr 31mm;
     gap: 5mm;
     align-items: center;
-    height: 55mm;
+    position: relative;
+    overflow: hidden;
   }
+
+  .card-mini::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(15, 23, 42, 0.03) 0.3mm, transparent 0.3mm),
+      linear-gradient(rgba(15, 23, 42, 0.03) 0.3mm, transparent 0.3mm);
+    background-size: 7mm 7mm;
+    pointer-events: none;
+  }
+
+  .card-mini > * { position: relative; }
+
+  .card-mini .stars { font-size: 9pt; margin-bottom: 1.5mm; letter-spacing: 0.14em; }
 
   .card-mini h2 {
-    font-size: 12.5pt;
-    line-height: 1.15;
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 600;
+    font-size: 13pt;
+    line-height: 1.12;
     margin: 0 0 2mm;
-    letter-spacing: -0.01em;
   }
 
-  .card-mini .stars { font-size: 10pt; margin-bottom: 1.5mm; }
-
   .card-mini p {
-    font-size: 8pt;
+    font-size: 7.5pt;
     line-height: 1.45;
     margin: 0 0 2mm;
     color: #334155;
   }
 
-  .card-mini .url { font-size: 7.5pt; }
+  .card-mini .url { font-size: 7pt; margin-top: 0; }
 
-  .card-mini .qr-box {
+  .card-mini .qr-frame {
+    width: 100%;
+    padding: 2.2mm;
     box-shadow: 1.2mm 1.2mm 0 0 var(--sky);
-    padding: 2.5mm;
   }
 
-  .card-mini .qr-caption { font-size: 6pt; margin-top: 1.5mm; }
+  .sheet-label {
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #64748b;
+    margin: 0 0 3mm;
+  }
 
   @page { size: A4 portrait; margin: 8mm; }
 
   @media print {
     body { background: #fff; }
-    .screen-note { display: none; }
+    .screen-note, .sheet-label { display: none; }
     .sheet { margin: 0; padding: 0; width: auto; }
+    .sheet--tent { break-after: page; }
   }
 </style>
 </head>
 <body>
 
 <div class="screen-note">
-  <strong>Print this page at 100% scale</strong> (Ctrl+P, A4, "Default" margins, background graphics ON).
-  The top card sits on the reception counter; the four small cards are business-card size to hand to patients
-  or tuck in with scripts. Cut along the dashed lines. Test one scan with your phone before printing a batch —
-  it should open the Google review form for Dr M Magerman.
+  <strong>Two sheets.</strong> Print at 100% scale (Ctrl+P, A4, "Default" margins, background graphics ON) —
+  card stock (200&ndash;250gsm) if the printer takes it.
+  <strong>Sheet 1</strong> is the counter card: cut along the dashed border, fold on the centre line, and it
+  stands on its own as a tent &mdash; both sides read correctly. <strong>Sheet 2</strong> is four handout
+  cards for patients. Test one scan before printing a batch.
 </div>
 
-<div class="sheet">
+<!-- ═══ SHEET 1: TENT CARD ═══ -->
+<div class="sheet sheet--tent">
+  <div class="tent">
 
-  <div class="cut">
-    <div class="card-large">
-      <div>
-        <span class="eyebrow">Dr Magerman &middot; Family Practice</span>
-        <h1>How was your visit?</h1>
-        <p>Scan the code to leave us a Google review. It takes less than a minute and helps other families in the community find the practice.</p>
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <span class="url">drmagerman.co.za/review</span>
-        <p class="practice-line">Lawson Place, 226 Thornton Road, Belthorn, Cape Town &middot; 021 696 4132</p>
-      </div>
-      <div class="qr-box">
+    <div class="tent-panel tent-panel--top">
+      <span class="panel-eyebrow">Dr Magerman &middot; Family Practice</span>
+      <h1 class="panel-title">How was your visit?</h1>
+      <p class="panel-sub">Your review takes less than a minute and helps other families in the community find the practice.</p>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="qr-frame">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#0f172a" d="M2 2.5h7m2 0h1m1 0h2m2 0h1m2 0h2m1 0h4m5 0h7M2 3.5h1m5 0h1m2 0h4m1 0h2m1 0h1m5 0h1m4 0h1m1 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h3m2 0h1m4 0h1m1 0h2m1 0h5m2 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m2 0h3m2 0h1m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m3 0h5m2 0h1m1 0h1m1 0h4m5 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m2 0h3m1 0h1m1 0h2m1 0h1m2 0h1m8 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M11 9.5h4m1 0h1m1 0h2m2 0h1m2 0h1m1 0h1m1 0h2M5 10.5h2m1 0h2m1 0h3m1 0h1m3 0h1m2 0h2m3 0h1m2 0h1m4 0h2M3 11.5h1m2 0h2m1 0h1m1 0h2m5 0h1m5 0h4m3 0h2m1 0h3M2 12.5h3m1 0h4m3 0h1m1 0h1m1 0h1m1 0h3m3 0h1m1 0h1m3 0h4m2 0h2M2 13.5h2m1 0h2m3 0h2m2 0h1m1 0h4m4 0h1m1 0h1m1 0h2m1 0h2m2 0h3M5 14.5h1m2 0h4m3 0h1m2 0h2m2 0h2m1 0h2m3 0h1m1 0h2M2 15.5h3m6 0h1m1 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1M2 16.5h2m1 0h4m4 0h1m7 0h1m1 0h3m3 0h1m1 0h1m2 0h3m1 0h1M4 17.5h4m4 0h1m1 0h1m1 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h4m1 0h3M3 18.5h2m3 0h1m1 0h1m1 0h2m1 0h4m2 0h2m1 0h4m1 0h1m2 0h1m3 0h1m1 0h1M3 19.5h2m1 0h1m2 0h1m5 0h3m2 0h1m1 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h1M3 20.5h3m1 0h4m2 0h2m5 0h1m2 0h2m3 0h2m3 0h1m1 0h1m2 0h1M3 21.5h3m1 0h1m2 0h1m3 0h2m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1M3 22.5h1m1 0h1m1 0h3m2 0h4m1 0h2m1 0h2m1 0h1m1 0h2m1 0h5m1 0h2m2 0h1M2 23.5h2m3 0h1m2 0h5m2 0h1m3 0h2m1 0h8m1 0h3M2 24.5h4m1 0h3m2 0h1m2 0h3m2 0h2m1 0h1m2 0h2m1 0h1m4 0h3m1 0h1M2 25.5h1m3 0h2m1 0h5m2 0h1m5 0h1m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M2 26.5h2m1 0h1m2 0h2m1 0h6m1 0h1m4 0h5m5 0h3m1 0h1M2 27.5h2m3 0h1m2 0h1m1 0h1m1 0h4m1 0h1m2 0h1m1 0h1m2 0h2m3 0h1m2 0h1M2 28.5h4m1 0h2m3 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h2m1 0h2m2 0h3m2 0h2M2 29.5h1m1 0h4m1 0h1m2 0h1m1 0h2m1 0h4m2 0h3m4 0h2m1 0h1m2 0h3M2 30.5h1m2 0h6m1 0h5m2 0h2m1 0h1m3 0h2m1 0h7m1 0h2M10 31.5h3m5 0h1m1 0h1m2 0h1m3 0h2m1 0h1m3 0h3M2 32.5h7m1 0h1m6 0h1m4 0h1m1 0h4m2 0h1m1 0h1m1 0h3m1 0h1M2 33.5h1m5 0h1m2 0h2m1 0h2m1 0h4m2 0h3m1 0h1m1 0h2m3 0h2m1 0h1M2 34.5h1m1 0h3m1 0h1m1 0h1m3 0h5m1 0h2m1 0h2m3 0h7m2 0h2M2 35.5h1m1 0h3m1 0h1m1 0h3m3 0h3m1 0h3m1 0h1m1 0h1m1 0h1m3 0h1m2 0h2M2 36.5h1m1 0h3m1 0h1m2 0h3m1 0h1m2 0h2m1 0h1m3 0h1m3 0h2m2 0h3m1 0h2M2 37.5h1m5 0h1m2 0h4m1 0h1m6 0h4m1 0h1m2 0h8M2 38.5h7m4 0h1m4 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1"/></svg>
-        <div class="qr-caption">Scan to review us on Google</div>
+      </div>
+      <div class="scan-line">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M17 3h4v4h-2V5h-2V3zM3 3h4v2H5v2H3V3zm18 14v4h-4v-2h2v-2h2zM5 17v2h2v2H3v-4h2zm2-10h4v4H7V7zm6 0h4v4h-4V7zM7 13h4v4H7v-4zm8 0h2v2h-2v-2zm2 2h2v2h-2v-2z" fill="currentColor"/></svg>
+        Scan to review us on Google
+      </div>
+      <div class="url">drmagerman.co.za/review</div>
+      <div class="panel-footer">
+        <span class="ecg"><svg viewBox="0 0 100 20" fill="none" preserveAspectRatio="none"><path d="M0 12h28l4-7 5 12 4-9 3 4h56" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
+        <span>Lawson Place, 226 Thornton Road, Belthorn &middot; 021&nbsp;696&nbsp;4132</span>
+        <span class="ecg"><svg viewBox="0 0 100 20" fill="none" preserveAspectRatio="none"><path d="M0 12h28l4-7 5 12 4-9 3 4h56" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
+      </div>
+    </div>
+
+    <div class="fold-line"><span class="fold-label">Fold here</span></div>
+
+    <div class="tent-panel">
+      <span class="panel-eyebrow">Dr Magerman &middot; Family Practice</span>
+      <h1 class="panel-title">How was your visit?</h1>
+      <p class="panel-sub">Your review takes less than a minute and helps other families in the community find the practice.</p>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="qr-frame">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#0f172a" d="M2 2.5h7m2 0h1m1 0h2m2 0h1m2 0h2m1 0h4m5 0h7M2 3.5h1m5 0h1m2 0h4m1 0h2m1 0h1m5 0h1m4 0h1m1 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h3m2 0h1m4 0h1m1 0h2m1 0h5m2 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m2 0h3m2 0h1m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m3 0h5m2 0h1m1 0h1m1 0h4m5 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m2 0h3m1 0h1m1 0h2m1 0h1m2 0h1m8 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M11 9.5h4m1 0h1m1 0h2m2 0h1m2 0h1m1 0h1m1 0h2M5 10.5h2m1 0h2m1 0h3m1 0h1m3 0h1m2 0h2m3 0h1m2 0h1m4 0h2M3 11.5h1m2 0h2m1 0h1m1 0h2m5 0h1m5 0h4m3 0h2m1 0h3M2 12.5h3m1 0h4m3 0h1m1 0h1m1 0h1m1 0h3m3 0h1m1 0h1m3 0h4m2 0h2M2 13.5h2m1 0h2m3 0h2m2 0h1m1 0h4m4 0h1m1 0h1m1 0h2m1 0h2m2 0h3M5 14.5h1m2 0h4m3 0h1m2 0h2m2 0h2m1 0h2m3 0h1m1 0h2M2 15.5h3m6 0h1m1 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1M2 16.5h2m1 0h4m4 0h1m7 0h1m1 0h3m3 0h1m1 0h1m2 0h3m1 0h1M4 17.5h4m4 0h1m1 0h1m1 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h4m1 0h3M3 18.5h2m3 0h1m1 0h1m1 0h2m1 0h4m2 0h2m1 0h4m1 0h1m2 0h1m3 0h1m1 0h1M3 19.5h2m1 0h1m2 0h1m5 0h3m2 0h1m1 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h1M3 20.5h3m1 0h4m2 0h2m5 0h1m2 0h2m3 0h2m3 0h1m1 0h1m2 0h1M3 21.5h3m1 0h1m2 0h1m3 0h2m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1M3 22.5h1m1 0h1m1 0h3m2 0h4m1 0h2m1 0h2m1 0h1m1 0h2m1 0h5m1 0h2m2 0h1M2 23.5h2m3 0h1m2 0h5m2 0h1m3 0h2m1 0h8m1 0h3M2 24.5h4m1 0h3m2 0h1m2 0h3m2 0h2m1 0h1m2 0h2m1 0h1m4 0h3m1 0h1M2 25.5h1m3 0h2m1 0h5m2 0h1m5 0h1m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M2 26.5h2m1 0h1m2 0h2m1 0h6m1 0h1m4 0h5m5 0h3m1 0h1M2 27.5h2m3 0h1m2 0h1m1 0h1m1 0h4m1 0h1m2 0h1m1 0h1m2 0h2m3 0h1m2 0h1M2 28.5h4m1 0h2m3 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h2m1 0h2m2 0h3m2 0h2M2 29.5h1m1 0h4m1 0h1m2 0h1m1 0h2m1 0h4m2 0h3m4 0h2m1 0h1m2 0h3M2 30.5h1m2 0h6m1 0h5m2 0h2m1 0h1m3 0h2m1 0h7m1 0h2M10 31.5h3m5 0h1m1 0h1m2 0h1m3 0h2m1 0h1m3 0h3M2 32.5h7m1 0h1m6 0h1m4 0h1m1 0h4m2 0h1m1 0h1m1 0h3m1 0h1M2 33.5h1m5 0h1m2 0h2m1 0h2m1 0h4m2 0h3m1 0h1m1 0h2m3 0h2m1 0h1M2 34.5h1m1 0h3m1 0h1m1 0h1m3 0h5m1 0h2m1 0h2m3 0h7m2 0h2M2 35.5h1m1 0h3m1 0h1m1 0h3m3 0h3m1 0h3m1 0h1m1 0h1m1 0h1m3 0h1m2 0h2M2 36.5h1m1 0h3m1 0h1m2 0h3m1 0h1m2 0h2m1 0h1m3 0h1m3 0h2m2 0h3m1 0h2M2 37.5h1m5 0h1m2 0h4m1 0h1m6 0h4m1 0h1m2 0h8M2 38.5h7m4 0h1m4 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1"/></svg>
+      </div>
+      <div class="scan-line">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M17 3h4v4h-2V5h-2V3zM3 3h4v2H5v2H3V3zm18 14v4h-4v-2h2v-2h2zM5 17v2h2v2H3v-4h2zm2-10h4v4H7V7zm6 0h4v4h-4V7zM7 13h4v4H7v-4zm8 0h2v2h-2v-2zm2 2h2v2h-2v-2z" fill="currentColor"/></svg>
+        Scan to review us on Google
+      </div>
+      <div class="url">drmagerman.co.za/review</div>
+      <div class="panel-footer">
+        <span class="ecg"><svg viewBox="0 0 100 20" fill="none" preserveAspectRatio="none"><path d="M0 12h28l4-7 5 12 4-9 3 4h56" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
+        <span>Lawson Place, 226 Thornton Road, Belthorn &middot; 021&nbsp;696&nbsp;4132</span>
+        <span class="ecg"><svg viewBox="0 0 100 20" fill="none" preserveAspectRatio="none"><path d="M0 12h28l4-7 5 12 4-9 3 4h56" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ SHEET 2: HANDOUT MINIS ═══ -->
+<div class="sheet">
+  <p class="sheet-label">Sheet 2 &mdash; handout cards (business-card size)</p>
+  <div class="mini-grid">
+    <div class="cut">
+      <div class="card-mini">
+        <div>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <h2>Enjoyed your visit?</h2>
+          <p>Scan to leave Dr Magerman a Google review.</p>
+          <span class="url">drmagerman.co.za/review</span>
+        </div>
+        <div class="qr-frame">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#0f172a" d="M2 2.5h7m2 0h1m1 0h2m2 0h1m2 0h2m1 0h4m5 0h7M2 3.5h1m5 0h1m2 0h4m1 0h2m1 0h1m5 0h1m4 0h1m1 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h3m2 0h1m4 0h1m1 0h2m1 0h5m2 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m2 0h3m2 0h1m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m3 0h5m2 0h1m1 0h1m1 0h4m5 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m2 0h3m1 0h1m1 0h2m1 0h1m2 0h1m8 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M11 9.5h4m1 0h1m1 0h2m2 0h1m2 0h1m1 0h1m1 0h2M5 10.5h2m1 0h2m1 0h3m1 0h1m3 0h1m2 0h2m3 0h1m2 0h1m4 0h2M3 11.5h1m2 0h2m1 0h1m1 0h2m5 0h1m5 0h4m3 0h2m1 0h3M2 12.5h3m1 0h4m3 0h1m1 0h1m1 0h1m1 0h3m3 0h1m1 0h1m3 0h4m2 0h2M2 13.5h2m1 0h2m3 0h2m2 0h1m1 0h4m4 0h1m1 0h1m1 0h2m1 0h2m2 0h3M5 14.5h1m2 0h4m3 0h1m2 0h2m2 0h2m1 0h2m3 0h1m1 0h2M2 15.5h3m6 0h1m1 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1M2 16.5h2m1 0h4m4 0h1m7 0h1m1 0h3m3 0h1m1 0h1m2 0h3m1 0h1M4 17.5h4m4 0h1m1 0h1m1 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h4m1 0h3M3 18.5h2m3 0h1m1 0h1m1 0h2m1 0h4m2 0h2m1 0h4m1 0h1m2 0h1m3 0h1m1 0h1M3 19.5h2m1 0h1m2 0h1m5 0h3m2 0h1m1 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h1M3 20.5h3m1 0h4m2 0h2m5 0h1m2 0h2m3 0h2m3 0h1m1 0h1m2 0h1M3 21.5h3m1 0h1m2 0h1m3 0h2m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1M3 22.5h1m1 0h1m1 0h3m2 0h4m1 0h2m1 0h2m1 0h1m1 0h2m1 0h5m1 0h2m2 0h1M2 23.5h2m3 0h1m2 0h5m2 0h1m3 0h2m1 0h8m1 0h3M2 24.5h4m1 0h3m2 0h1m2 0h3m2 0h2m1 0h1m2 0h2m1 0h1m4 0h3m1 0h1M2 25.5h1m3 0h2m1 0h5m2 0h1m5 0h1m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M2 26.5h2m1 0h1m2 0h2m1 0h6m1 0h1m4 0h5m5 0h3m1 0h1M2 27.5h2m3 0h1m2 0h1m1 0h1m1 0h4m1 0h1m2 0h1m1 0h1m2 0h2m3 0h1m2 0h1M2 28.5h4m1 0h2m3 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h2m1 0h2m2 0h3m2 0h2M2 29.5h1m1 0h4m1 0h1m2 0h1m1 0h2m1 0h4m2 0h3m4 0h2m1 0h1m2 0h3M2 30.5h1m2 0h6m1 0h5m2 0h2m1 0h1m3 0h2m1 0h7m1 0h2M10 31.5h3m5 0h1m1 0h1m2 0h1m3 0h2m1 0h1m3 0h3M2 32.5h7m1 0h1m6 0h1m4 0h1m1 0h4m2 0h1m1 0h1m1 0h3m1 0h1M2 33.5h1m5 0h1m2 0h2m1 0h2m1 0h4m2 0h3m1 0h1m1 0h2m3 0h2m1 0h1M2 34.5h1m1 0h3m1 0h1m1 0h1m3 0h5m1 0h2m1 0h2m3 0h7m2 0h2M2 35.5h1m1 0h3m1 0h1m1 0h3m3 0h3m1 0h3m1 0h1m1 0h1m1 0h1m3 0h1m2 0h2M2 36.5h1m1 0h3m1 0h1m2 0h3m1 0h1m2 0h2m1 0h1m3 0h1m3 0h2m2 0h3m1 0h2M2 37.5h1m5 0h1m2 0h4m1 0h1m6 0h4m1 0h1m2 0h8M2 38.5h7m4 0h1m4 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="cut">
+      <div class="card-mini">
+        <div>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <h2>Enjoyed your visit?</h2>
+          <p>Scan to leave Dr Magerman a Google review.</p>
+          <span class="url">drmagerman.co.za/review</span>
+        </div>
+        <div class="qr-frame">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#0f172a" d="M2 2.5h7m2 0h1m1 0h2m2 0h1m2 0h2m1 0h4m5 0h7M2 3.5h1m5 0h1m2 0h4m1 0h2m1 0h1m5 0h1m4 0h1m1 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h3m2 0h1m4 0h1m1 0h2m1 0h5m2 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m2 0h3m2 0h1m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m3 0h5m2 0h1m1 0h1m1 0h4m5 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m2 0h3m1 0h1m1 0h2m1 0h1m2 0h1m8 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M11 9.5h4m1 0h1m1 0h2m2 0h1m2 0h1m1 0h1m1 0h2M5 10.5h2m1 0h2m1 0h3m1 0h1m3 0h1m2 0h2m3 0h1m2 0h1m4 0h2M3 11.5h1m2 0h2m1 0h1m1 0h2m5 0h1m5 0h4m3 0h2m1 0h3M2 12.5h3m1 0h4m3 0h1m1 0h1m1 0h1m1 0h3m3 0h1m1 0h1m3 0h4m2 0h2M2 13.5h2m1 0h2m3 0h2m2 0h1m1 0h4m4 0h1m1 0h1m1 0h2m1 0h2m2 0h3M5 14.5h1m2 0h4m3 0h1m2 0h2m2 0h2m1 0h2m3 0h1m1 0h2M2 15.5h3m6 0h1m1 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1M2 16.5h2m1 0h4m4 0h1m7 0h1m1 0h3m3 0h1m1 0h1m2 0h3m1 0h1M4 17.5h4m4 0h1m1 0h1m1 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h4m1 0h3M3 18.5h2m3 0h1m1 0h1m1 0h2m1 0h4m2 0h2m1 0h4m1 0h1m2 0h1m3 0h1m1 0h1M3 19.5h2m1 0h1m2 0h1m5 0h3m2 0h1m1 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h1M3 20.5h3m1 0h4m2 0h2m5 0h1m2 0h2m3 0h2m3 0h1m1 0h1m2 0h1M3 21.5h3m1 0h1m2 0h1m3 0h2m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1M3 22.5h1m1 0h1m1 0h3m2 0h4m1 0h2m1 0h2m1 0h1m1 0h2m1 0h5m1 0h2m2 0h1M2 23.5h2m3 0h1m2 0h5m2 0h1m3 0h2m1 0h8m1 0h3M2 24.5h4m1 0h3m2 0h1m2 0h3m2 0h2m1 0h1m2 0h2m1 0h1m4 0h3m1 0h1M2 25.5h1m3 0h2m1 0h5m2 0h1m5 0h1m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M2 26.5h2m1 0h1m2 0h2m1 0h6m1 0h1m4 0h5m5 0h3m1 0h1M2 27.5h2m3 0h1m2 0h1m1 0h1m1 0h4m1 0h1m2 0h1m1 0h1m2 0h2m3 0h1m2 0h1M2 28.5h4m1 0h2m3 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h2m1 0h2m2 0h3m2 0h2M2 29.5h1m1 0h4m1 0h1m2 0h1m1 0h2m1 0h4m2 0h3m4 0h2m1 0h1m2 0h3M2 30.5h1m2 0h6m1 0h5m2 0h2m1 0h1m3 0h2m1 0h7m1 0h2M10 31.5h3m5 0h1m1 0h1m2 0h1m3 0h2m1 0h1m3 0h3M2 32.5h7m1 0h1m6 0h1m4 0h1m1 0h4m2 0h1m1 0h1m1 0h3m1 0h1M2 33.5h1m5 0h1m2 0h2m1 0h2m1 0h4m2 0h3m1 0h1m1 0h2m3 0h2m1 0h1M2 34.5h1m1 0h3m1 0h1m1 0h1m3 0h5m1 0h2m1 0h2m3 0h7m2 0h2M2 35.5h1m1 0h3m1 0h1m1 0h3m3 0h3m1 0h3m1 0h1m1 0h1m1 0h1m3 0h1m2 0h2M2 36.5h1m1 0h3m1 0h1m2 0h3m1 0h1m2 0h2m1 0h1m3 0h1m3 0h2m2 0h3m1 0h2M2 37.5h1m5 0h1m2 0h4m1 0h1m6 0h4m1 0h1m2 0h8M2 38.5h7m4 0h1m4 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="cut">
+      <div class="card-mini">
+        <div>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <h2>Enjoyed your visit?</h2>
+          <p>Scan to leave Dr Magerman a Google review.</p>
+          <span class="url">drmagerman.co.za/review</span>
+        </div>
+        <div class="qr-frame">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#0f172a" d="M2 2.5h7m2 0h1m1 0h2m2 0h1m2 0h2m1 0h4m5 0h7M2 3.5h1m5 0h1m2 0h4m1 0h2m1 0h1m5 0h1m4 0h1m1 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h3m2 0h1m4 0h1m1 0h2m1 0h5m2 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m2 0h3m2 0h1m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m3 0h5m2 0h1m1 0h1m1 0h4m5 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m2 0h3m1 0h1m1 0h2m1 0h1m2 0h1m8 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M11 9.5h4m1 0h1m1 0h2m2 0h1m2 0h1m1 0h1m1 0h2M5 10.5h2m1 0h2m1 0h3m1 0h1m3 0h1m2 0h2m3 0h1m2 0h1m4 0h2M3 11.5h1m2 0h2m1 0h1m1 0h2m5 0h1m5 0h4m3 0h2m1 0h3M2 12.5h3m1 0h4m3 0h1m1 0h1m1 0h1m1 0h3m3 0h1m1 0h1m3 0h4m2 0h2M2 13.5h2m1 0h2m3 0h2m2 0h1m1 0h4m4 0h1m1 0h1m1 0h2m1 0h2m2 0h3M5 14.5h1m2 0h4m3 0h1m2 0h2m2 0h2m1 0h2m3 0h1m1 0h2M2 15.5h3m6 0h1m1 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1M2 16.5h2m1 0h4m4 0h1m7 0h1m1 0h3m3 0h1m1 0h1m2 0h3m1 0h1M4 17.5h4m4 0h1m1 0h1m1 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h4m1 0h3M3 18.5h2m3 0h1m1 0h1m1 0h2m1 0h4m2 0h2m1 0h4m1 0h1m2 0h1m3 0h1m1 0h1M3 19.5h2m1 0h1m2 0h1m5 0h3m2 0h1m1 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h1M3 20.5h3m1 0h4m2 0h2m5 0h1m2 0h2m3 0h2m3 0h1m1 0h1m2 0h1M3 21.5h3m1 0h1m2 0h1m3 0h2m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1M3 22.5h1m1 0h1m1 0h3m2 0h4m1 0h2m1 0h2m1 0h1m1 0h2m1 0h5m1 0h2m2 0h1M2 23.5h2m3 0h1m2 0h5m2 0h1m3 0h2m1 0h8m1 0h3M2 24.5h4m1 0h3m2 0h1m2 0h3m2 0h2m1 0h1m2 0h2m1 0h1m4 0h3m1 0h1M2 25.5h1m3 0h2m1 0h5m2 0h1m5 0h1m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M2 26.5h2m1 0h1m2 0h2m1 0h6m1 0h1m4 0h5m5 0h3m1 0h1M2 27.5h2m3 0h1m2 0h1m1 0h1m1 0h4m1 0h1m2 0h1m1 0h1m2 0h2m3 0h1m2 0h1M2 28.5h4m1 0h2m3 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h2m1 0h2m2 0h3m2 0h2M2 29.5h1m1 0h4m1 0h1m2 0h1m1 0h2m1 0h4m2 0h3m4 0h2m1 0h1m2 0h3M2 30.5h1m2 0h6m1 0h5m2 0h2m1 0h1m3 0h2m1 0h7m1 0h2M10 31.5h3m5 0h1m1 0h1m2 0h1m3 0h2m1 0h1m3 0h3M2 32.5h7m1 0h1m6 0h1m4 0h1m1 0h4m2 0h1m1 0h1m1 0h3m1 0h1M2 33.5h1m5 0h1m2 0h2m1 0h2m1 0h4m2 0h3m1 0h1m1 0h2m3 0h2m1 0h1M2 34.5h1m1 0h3m1 0h1m1 0h1m3 0h5m1 0h2m1 0h2m3 0h7m2 0h2M2 35.5h1m1 0h3m1 0h1m1 0h3m3 0h3m1 0h3m1 0h1m1 0h1m1 0h1m3 0h1m2 0h2M2 36.5h1m1 0h3m1 0h1m2 0h3m1 0h1m2 0h2m1 0h1m3 0h1m3 0h2m2 0h3m1 0h2M2 37.5h1m5 0h1m2 0h4m1 0h1m6 0h4m1 0h1m2 0h8M2 38.5h7m4 0h1m4 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="cut">
+      <div class="card-mini">
+        <div>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <h2>Enjoyed your visit?</h2>
+          <p>Scan to leave Dr Magerman a Google review.</p>
+          <span class="url">drmagerman.co.za/review</span>
+        </div>
+        <div class="qr-frame">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#0f172a" d="M2 2.5h7m2 0h1m1 0h2m2 0h1m2 0h2m1 0h4m5 0h7M2 3.5h1m5 0h1m2 0h4m1 0h2m1 0h1m5 0h1m4 0h1m1 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h3m2 0h1m4 0h1m1 0h2m1 0h5m2 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m2 0h3m2 0h1m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m3 0h5m2 0h1m1 0h1m1 0h4m5 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m2 0h3m1 0h1m1 0h2m1 0h1m2 0h1m8 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M11 9.5h4m1 0h1m1 0h2m2 0h1m2 0h1m1 0h1m1 0h2M5 10.5h2m1 0h2m1 0h3m1 0h1m3 0h1m2 0h2m3 0h1m2 0h1m4 0h2M3 11.5h1m2 0h2m1 0h1m1 0h2m5 0h1m5 0h4m3 0h2m1 0h3M2 12.5h3m1 0h4m3 0h1m1 0h1m1 0h1m1 0h3m3 0h1m1 0h1m3 0h4m2 0h2M2 13.5h2m1 0h2m3 0h2m2 0h1m1 0h4m4 0h1m1 0h1m1 0h2m1 0h2m2 0h3M5 14.5h1m2 0h4m3 0h1m2 0h2m2 0h2m1 0h2m3 0h1m1 0h2M2 15.5h3m6 0h1m1 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1M2 16.5h2m1 0h4m4 0h1m7 0h1m1 0h3m3 0h1m1 0h1m2 0h3m1 0h1M4 17.5h4m4 0h1m1 0h1m1 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h4m1 0h3M3 18.5h2m3 0h1m1 0h1m1 0h2m1 0h4m2 0h2m1 0h4m1 0h1m2 0h1m3 0h1m1 0h1M3 19.5h2m1 0h1m2 0h1m5 0h3m2 0h1m1 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h1M3 20.5h3m1 0h4m2 0h2m5 0h1m2 0h2m3 0h2m3 0h1m1 0h1m2 0h1M3 21.5h3m1 0h1m2 0h1m3 0h2m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1M3 22.5h1m1 0h1m1 0h3m2 0h4m1 0h2m1 0h2m1 0h1m1 0h2m1 0h5m1 0h2m2 0h1M2 23.5h2m3 0h1m2 0h5m2 0h1m3 0h2m1 0h8m1 0h3M2 24.5h4m1 0h3m2 0h1m2 0h3m2 0h2m1 0h1m2 0h2m1 0h1m4 0h3m1 0h1M2 25.5h1m3 0h2m1 0h5m2 0h1m5 0h1m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M2 26.5h2m1 0h1m2 0h2m1 0h6m1 0h1m4 0h5m5 0h3m1 0h1M2 27.5h2m3 0h1m2 0h1m1 0h1m1 0h4m1 0h1m2 0h1m1 0h1m2 0h2m3 0h1m2 0h1M2 28.5h4m1 0h2m3 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h2m1 0h2m2 0h3m2 0h2M2 29.5h1m1 0h4m1 0h1m2 0h1m1 0h2m1 0h4m2 0h3m4 0h2m1 0h1m2 0h3M2 30.5h1m2 0h6m1 0h5m2 0h2m1 0h1m3 0h2m1 0h7m1 0h2M10 31.5h3m5 0h1m1 0h1m2 0h1m3 0h2m1 0h1m3 0h3M2 32.5h7m1 0h1m6 0h1m4 0h1m1 0h4m2 0h1m1 0h1m1 0h3m1 0h1M2 33.5h1m5 0h1m2 0h2m1 0h2m1 0h4m2 0h3m1 0h1m1 0h2m3 0h2m1 0h1M2 34.5h1m1 0h3m1 0h1m1 0h1m3 0h5m1 0h2m1 0h2m3 0h7m2 0h2M2 35.5h1m1 0h3m1 0h1m1 0h3m3 0h3m1 0h3m1 0h1m1 0h1m1 0h1m3 0h1m2 0h2M2 36.5h1m1 0h3m1 0h1m2 0h3m1 0h1m2 0h2m1 0h1m3 0h1m3 0h2m2 0h3m1 0h2M2 37.5h1m5 0h1m2 0h4m1 0h1m6 0h4m1 0h1m2 0h8M2 38.5h7m4 0h1m4 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1"/></svg>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="mini-row">
-    <div class="cut">
-      <div class="card-mini">
-        <div>
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <h2>Enjoyed your visit?</h2>
-          <p>Scan to leave Dr Magerman a Google review.</p>
-          <span class="url">drmagerman.co.za/review</span>
-        </div>
-        <div class="qr-box">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#0f172a" d="M2 2.5h7m2 0h1m1 0h2m2 0h1m2 0h2m1 0h4m5 0h7M2 3.5h1m5 0h1m2 0h4m1 0h2m1 0h1m5 0h1m4 0h1m1 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h3m2 0h1m4 0h1m1 0h2m1 0h5m2 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m2 0h3m2 0h1m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m3 0h5m2 0h1m1 0h1m1 0h4m5 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m2 0h3m1 0h1m1 0h2m1 0h1m2 0h1m8 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M11 9.5h4m1 0h1m1 0h2m2 0h1m2 0h1m1 0h1m1 0h2M5 10.5h2m1 0h2m1 0h3m1 0h1m3 0h1m2 0h2m3 0h1m2 0h1m4 0h2M3 11.5h1m2 0h2m1 0h1m1 0h2m5 0h1m5 0h4m3 0h2m1 0h3M2 12.5h3m1 0h4m3 0h1m1 0h1m1 0h1m1 0h3m3 0h1m1 0h1m3 0h4m2 0h2M2 13.5h2m1 0h2m3 0h2m2 0h1m1 0h4m4 0h1m1 0h1m1 0h2m1 0h2m2 0h3M5 14.5h1m2 0h4m3 0h1m2 0h2m2 0h2m1 0h2m3 0h1m1 0h2M2 15.5h3m6 0h1m1 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1M2 16.5h2m1 0h4m4 0h1m7 0h1m1 0h3m3 0h1m1 0h1m2 0h3m1 0h1M4 17.5h4m4 0h1m1 0h1m1 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h4m1 0h3M3 18.5h2m3 0h1m1 0h1m1 0h2m1 0h4m2 0h2m1 0h4m1 0h1m2 0h1m3 0h1m1 0h1M3 19.5h2m1 0h1m2 0h1m5 0h3m2 0h1m1 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h1M3 20.5h3m1 0h4m2 0h2m5 0h1m2 0h2m3 0h2m3 0h1m1 0h1m2 0h1M3 21.5h3m1 0h1m2 0h1m3 0h2m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1M3 22.5h1m1 0h1m1 0h3m2 0h4m1 0h2m1 0h2m1 0h1m1 0h2m1 0h5m1 0h2m2 0h1M2 23.5h2m3 0h1m2 0h5m2 0h1m3 0h2m1 0h8m1 0h3M2 24.5h4m1 0h3m2 0h1m2 0h3m2 0h2m1 0h1m2 0h2m1 0h1m4 0h3m1 0h1M2 25.5h1m3 0h2m1 0h5m2 0h1m5 0h1m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M2 26.5h2m1 0h1m2 0h2m1 0h6m1 0h1m4 0h5m5 0h3m1 0h1M2 27.5h2m3 0h1m2 0h1m1 0h1m1 0h4m1 0h1m2 0h1m1 0h1m2 0h2m3 0h1m2 0h1M2 28.5h4m1 0h2m3 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h2m1 0h2m2 0h3m2 0h2M2 29.5h1m1 0h4m1 0h1m2 0h1m1 0h2m1 0h4m2 0h3m4 0h2m1 0h1m2 0h3M2 30.5h1m2 0h6m1 0h5m2 0h2m1 0h1m3 0h2m1 0h7m1 0h2M10 31.5h3m5 0h1m1 0h1m2 0h1m3 0h2m1 0h1m3 0h3M2 32.5h7m1 0h1m6 0h1m4 0h1m1 0h4m2 0h1m1 0h1m1 0h3m1 0h1M2 33.5h1m5 0h1m2 0h2m1 0h2m1 0h4m2 0h3m1 0h1m1 0h2m3 0h2m1 0h1M2 34.5h1m1 0h3m1 0h1m1 0h1m3 0h5m1 0h2m1 0h2m3 0h7m2 0h2M2 35.5h1m1 0h3m1 0h1m1 0h3m3 0h3m1 0h3m1 0h1m1 0h1m1 0h1m3 0h1m2 0h2M2 36.5h1m1 0h3m1 0h1m2 0h3m1 0h1m2 0h2m1 0h1m3 0h1m3 0h2m2 0h3m1 0h2M2 37.5h1m5 0h1m2 0h4m1 0h1m6 0h4m1 0h1m2 0h8M2 38.5h7m4 0h1m4 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1"/></svg>
-        </div>
-      </div>
-    </div>
-    <div class="cut">
-      <div class="card-mini">
-        <div>
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <h2>Enjoyed your visit?</h2>
-          <p>Scan to leave Dr Magerman a Google review.</p>
-          <span class="url">drmagerman.co.za/review</span>
-        </div>
-        <div class="qr-box">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#0f172a" d="M2 2.5h7m2 0h1m1 0h2m2 0h1m2 0h2m1 0h4m5 0h7M2 3.5h1m5 0h1m2 0h4m1 0h2m1 0h1m5 0h1m4 0h1m1 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h3m2 0h1m4 0h1m1 0h2m1 0h5m2 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m2 0h3m2 0h1m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m3 0h5m2 0h1m1 0h1m1 0h4m5 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m2 0h3m1 0h1m1 0h2m1 0h1m2 0h1m8 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M11 9.5h4m1 0h1m1 0h2m2 0h1m2 0h1m1 0h1m1 0h2M5 10.5h2m1 0h2m1 0h3m1 0h1m3 0h1m2 0h2m3 0h1m2 0h1m4 0h2M3 11.5h1m2 0h2m1 0h1m1 0h2m5 0h1m5 0h4m3 0h2m1 0h3M2 12.5h3m1 0h4m3 0h1m1 0h1m1 0h1m1 0h3m3 0h1m1 0h1m3 0h4m2 0h2M2 13.5h2m1 0h2m3 0h2m2 0h1m1 0h4m4 0h1m1 0h1m1 0h2m1 0h2m2 0h3M5 14.5h1m2 0h4m3 0h1m2 0h2m2 0h2m1 0h2m3 0h1m1 0h2M2 15.5h3m6 0h1m1 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1M2 16.5h2m1 0h4m4 0h1m7 0h1m1 0h3m3 0h1m1 0h1m2 0h3m1 0h1M4 17.5h4m4 0h1m1 0h1m1 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h4m1 0h3M3 18.5h2m3 0h1m1 0h1m1 0h2m1 0h4m2 0h2m1 0h4m1 0h1m2 0h1m3 0h1m1 0h1M3 19.5h2m1 0h1m2 0h1m5 0h3m2 0h1m1 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h1M3 20.5h3m1 0h4m2 0h2m5 0h1m2 0h2m3 0h2m3 0h1m1 0h1m2 0h1M3 21.5h3m1 0h1m2 0h1m3 0h2m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1M3 22.5h1m1 0h1m1 0h3m2 0h4m1 0h2m1 0h2m1 0h1m1 0h2m1 0h5m1 0h2m2 0h1M2 23.5h2m3 0h1m2 0h5m2 0h1m3 0h2m1 0h8m1 0h3M2 24.5h4m1 0h3m2 0h1m2 0h3m2 0h2m1 0h1m2 0h2m1 0h1m4 0h3m1 0h1M2 25.5h1m3 0h2m1 0h5m2 0h1m5 0h1m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M2 26.5h2m1 0h1m2 0h2m1 0h6m1 0h1m4 0h5m5 0h3m1 0h1M2 27.5h2m3 0h1m2 0h1m1 0h1m1 0h4m1 0h1m2 0h1m1 0h1m2 0h2m3 0h1m2 0h1M2 28.5h4m1 0h2m3 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h2m1 0h2m2 0h3m2 0h2M2 29.5h1m1 0h4m1 0h1m2 0h1m1 0h2m1 0h4m2 0h3m4 0h2m1 0h1m2 0h3M2 30.5h1m2 0h6m1 0h5m2 0h2m1 0h1m3 0h2m1 0h7m1 0h2M10 31.5h3m5 0h1m1 0h1m2 0h1m3 0h2m1 0h1m3 0h3M2 32.5h7m1 0h1m6 0h1m4 0h1m1 0h4m2 0h1m1 0h1m1 0h3m1 0h1M2 33.5h1m5 0h1m2 0h2m1 0h2m1 0h4m2 0h3m1 0h1m1 0h2m3 0h2m1 0h1M2 34.5h1m1 0h3m1 0h1m1 0h1m3 0h5m1 0h2m1 0h2m3 0h7m2 0h2M2 35.5h1m1 0h3m1 0h1m1 0h3m3 0h3m1 0h3m1 0h1m1 0h1m1 0h1m3 0h1m2 0h2M2 36.5h1m1 0h3m1 0h1m2 0h3m1 0h1m2 0h2m1 0h1m3 0h1m3 0h2m2 0h3m1 0h2M2 37.5h1m5 0h1m2 0h4m1 0h1m6 0h4m1 0h1m2 0h8M2 38.5h7m4 0h1m4 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1"/></svg>
-        </div>
-      </div>
-    </div>
-    <div class="cut">
-      <div class="card-mini">
-        <div>
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <h2>Enjoyed your visit?</h2>
-          <p>Scan to leave Dr Magerman a Google review.</p>
-          <span class="url">drmagerman.co.za/review</span>
-        </div>
-        <div class="qr-box">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#0f172a" d="M2 2.5h7m2 0h1m1 0h2m2 0h1m2 0h2m1 0h4m5 0h7M2 3.5h1m5 0h1m2 0h4m1 0h2m1 0h1m5 0h1m4 0h1m1 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h3m2 0h1m4 0h1m1 0h2m1 0h5m2 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m2 0h3m2 0h1m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m3 0h5m2 0h1m1 0h1m1 0h4m5 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m2 0h3m1 0h1m1 0h2m1 0h1m2 0h1m8 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M11 9.5h4m1 0h1m1 0h2m2 0h1m2 0h1m1 0h1m1 0h2M5 10.5h2m1 0h2m1 0h3m1 0h1m3 0h1m2 0h2m3 0h1m2 0h1m4 0h2M3 11.5h1m2 0h2m1 0h1m1 0h2m5 0h1m5 0h4m3 0h2m1 0h3M2 12.5h3m1 0h4m3 0h1m1 0h1m1 0h1m1 0h3m3 0h1m1 0h1m3 0h4m2 0h2M2 13.5h2m1 0h2m3 0h2m2 0h1m1 0h4m4 0h1m1 0h1m1 0h2m1 0h2m2 0h3M5 14.5h1m2 0h4m3 0h1m2 0h2m2 0h2m1 0h2m3 0h1m1 0h2M2 15.5h3m6 0h1m1 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1M2 16.5h2m1 0h4m4 0h1m7 0h1m1 0h3m3 0h1m1 0h1m2 0h3m1 0h1M4 17.5h4m4 0h1m1 0h1m1 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h4m1 0h3M3 18.5h2m3 0h1m1 0h1m1 0h2m1 0h4m2 0h2m1 0h4m1 0h1m2 0h1m3 0h1m1 0h1M3 19.5h2m1 0h1m2 0h1m5 0h3m2 0h1m1 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h1M3 20.5h3m1 0h4m2 0h2m5 0h1m2 0h2m3 0h2m3 0h1m1 0h1m2 0h1M3 21.5h3m1 0h1m2 0h1m3 0h2m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1M3 22.5h1m1 0h1m1 0h3m2 0h4m1 0h2m1 0h2m1 0h1m1 0h2m1 0h5m1 0h2m2 0h1M2 23.5h2m3 0h1m2 0h5m2 0h1m3 0h2m1 0h8m1 0h3M2 24.5h4m1 0h3m2 0h1m2 0h3m2 0h2m1 0h1m2 0h2m1 0h1m4 0h3m1 0h1M2 25.5h1m3 0h2m1 0h5m2 0h1m5 0h1m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M2 26.5h2m1 0h1m2 0h2m1 0h6m1 0h1m4 0h5m5 0h3m1 0h1M2 27.5h2m3 0h1m2 0h1m1 0h1m1 0h4m1 0h1m2 0h1m1 0h1m2 0h2m3 0h1m2 0h1M2 28.5h4m1 0h2m3 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h2m1 0h2m2 0h3m2 0h2M2 29.5h1m1 0h4m1 0h1m2 0h1m1 0h2m1 0h4m2 0h3m4 0h2m1 0h1m2 0h3M2 30.5h1m2 0h6m1 0h5m2 0h2m1 0h1m3 0h2m1 0h7m1 0h2M10 31.5h3m5 0h1m1 0h1m2 0h1m3 0h2m1 0h1m3 0h3M2 32.5h7m1 0h1m6 0h1m4 0h1m1 0h4m2 0h1m1 0h1m1 0h3m1 0h1M2 33.5h1m5 0h1m2 0h2m1 0h2m1 0h4m2 0h3m1 0h1m1 0h2m3 0h2m1 0h1M2 34.5h1m1 0h3m1 0h1m1 0h1m3 0h5m1 0h2m1 0h2m3 0h7m2 0h2M2 35.5h1m1 0h3m1 0h1m1 0h3m3 0h3m1 0h3m1 0h1m1 0h1m1 0h1m3 0h1m2 0h2M2 36.5h1m1 0h3m1 0h1m2 0h3m1 0h1m2 0h2m1 0h1m3 0h1m3 0h2m2 0h3m1 0h2M2 37.5h1m5 0h1m2 0h4m1 0h1m6 0h4m1 0h1m2 0h8M2 38.5h7m4 0h1m4 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1"/></svg>
-        </div>
-      </div>
-    </div>
-    <div class="cut">
-      <div class="card-mini">
-        <div>
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <h2>Enjoyed your visit?</h2>
-          <p>Scan to leave Dr Magerman a Google review.</p>
-          <span class="url">drmagerman.co.za/review</span>
-        </div>
-        <div class="qr-box">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#0f172a" d="M2 2.5h7m2 0h1m1 0h2m2 0h1m2 0h2m1 0h4m5 0h7M2 3.5h1m5 0h1m2 0h4m1 0h2m1 0h1m5 0h1m4 0h1m1 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m1 0h3m2 0h1m4 0h1m1 0h2m1 0h5m2 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m2 0h3m2 0h1m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m3 0h5m2 0h1m1 0h1m1 0h4m5 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m2 0h3m1 0h1m1 0h2m1 0h1m2 0h1m8 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M11 9.5h4m1 0h1m1 0h2m2 0h1m2 0h1m1 0h1m1 0h2M5 10.5h2m1 0h2m1 0h3m1 0h1m3 0h1m2 0h2m3 0h1m2 0h1m4 0h2M3 11.5h1m2 0h2m1 0h1m1 0h2m5 0h1m5 0h4m3 0h2m1 0h3M2 12.5h3m1 0h4m3 0h1m1 0h1m1 0h1m1 0h3m3 0h1m1 0h1m3 0h4m2 0h2M2 13.5h2m1 0h2m3 0h2m2 0h1m1 0h4m4 0h1m1 0h1m1 0h2m1 0h2m2 0h3M5 14.5h1m2 0h4m3 0h1m2 0h2m2 0h2m1 0h2m3 0h1m1 0h2M2 15.5h3m6 0h1m1 0h1m2 0h1m2 0h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1M2 16.5h2m1 0h4m4 0h1m7 0h1m1 0h3m3 0h1m1 0h1m2 0h3m1 0h1M4 17.5h4m4 0h1m1 0h1m1 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h4m1 0h3M3 18.5h2m3 0h1m1 0h1m1 0h2m1 0h4m2 0h2m1 0h4m1 0h1m2 0h1m3 0h1m1 0h1M3 19.5h2m1 0h1m2 0h1m5 0h3m2 0h1m1 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h1M3 20.5h3m1 0h4m2 0h2m5 0h1m2 0h2m3 0h2m3 0h1m1 0h1m2 0h1M3 21.5h3m1 0h1m2 0h1m3 0h2m2 0h2m2 0h2m1 0h1m1 0h4m2 0h3m1 0h1M3 22.5h1m1 0h1m1 0h3m2 0h4m1 0h2m1 0h2m1 0h1m1 0h2m1 0h5m1 0h2m2 0h1M2 23.5h2m3 0h1m2 0h5m2 0h1m3 0h2m1 0h8m1 0h3M2 24.5h4m1 0h3m2 0h1m2 0h3m2 0h2m1 0h1m2 0h2m1 0h1m4 0h3m1 0h1M2 25.5h1m3 0h2m1 0h5m2 0h1m5 0h1m2 0h3m1 0h3m1 0h1m1 0h2m1 0h1M2 26.5h2m1 0h1m2 0h2m1 0h6m1 0h1m4 0h5m5 0h3m1 0h1M2 27.5h2m3 0h1m2 0h1m1 0h1m1 0h4m1 0h1m2 0h1m1 0h1m2 0h2m3 0h1m2 0h1M2 28.5h4m1 0h2m3 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h2m1 0h2m2 0h3m2 0h2M2 29.5h1m1 0h4m1 0h1m2 0h1m1 0h2m1 0h4m2 0h3m4 0h2m1 0h1m2 0h3M2 30.5h1m2 0h6m1 0h5m2 0h2m1 0h1m3 0h2m1 0h7m1 0h2M10 31.5h3m5 0h1m1 0h1m2 0h1m3 0h2m1 0h1m3 0h3M2 32.5h7m1 0h1m6 0h1m4 0h1m1 0h4m2 0h1m1 0h1m1 0h3m1 0h1M2 33.5h1m5 0h1m2 0h2m1 0h2m1 0h4m2 0h3m1 0h1m1 0h2m3 0h2m1 0h1M2 34.5h1m1 0h3m1 0h1m1 0h1m3 0h5m1 0h2m1 0h2m3 0h7m2 0h2M2 35.5h1m1 0h3m1 0h1m1 0h3m3 0h3m1 0h3m1 0h1m1 0h1m1 0h1m3 0h1m2 0h2M2 36.5h1m1 0h3m1 0h1m2 0h3m1 0h1m2 0h2m1 0h1m3 0h1m3 0h2m2 0h3m1 0h2M2 37.5h1m5 0h1m2 0h4m1 0h1m6 0h4m1 0h1m2 0h8M2 38.5h7m4 0h1m4 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1"/></svg>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </div>
 
 </body>
