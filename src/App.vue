@@ -12,7 +12,6 @@
       <router-view />
     </main>
     <Footer />
-    <WhatsAppButton />
   </div>
 </template>
 
@@ -22,7 +21,6 @@ import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import Breadcrumb from './components/Breadcrumb.vue'
 import HoursClosureNotice from './components/HoursClosureNotice.vue'
-import WhatsAppButton from './components/WhatsAppButton.vue'
 import { injectStructuredData } from './seo/structuredData'
 
 onMounted(() => {
