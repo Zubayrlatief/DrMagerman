@@ -122,7 +122,7 @@
                   </div>
                   <div class="info-content">
                     <h4>Phone</h4>
-                    <p><a href="tel:0216964132">021 696 4132</a></p>
+                    <p><a href="tel:0216964130">021 696 4130</a></p>
                   </div>
                 </div>
                 <div class="info-item">
@@ -275,7 +275,7 @@ const handleSubmit = async () => {
   } catch (error) {
     submitStatus.value = {
       type: 'error',
-      message: error instanceof Error ? error.message : 'We could not send your message. Please email info@drmagerman.co.za or call 021 696 4132.'
+      message: error instanceof Error ? error.message : 'We could not send your message. Please email info@drmagerman.co.za or call 021 696 4130.'
     }
   }
 

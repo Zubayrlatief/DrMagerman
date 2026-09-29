@@ -30,7 +30,7 @@ export function injectStructuredData() {
         '@type': 'ImageObject',
         url: absoluteUrl('/favicon.svg')
       },
-      telephone: '+27-21-696-4132',
+      telephone: '+27-21-696-4130',
       email: 'info@drmagerman.co.za',
       priceRange: '$$',
       currenciesAccepted: 'ZAR',

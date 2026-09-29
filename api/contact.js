@@ -86,7 +86,7 @@ module.exports = async (req, res) => {
   }
 
   if (isRateLimited(getClientIp(req))) {
-    return res.status(429).json({ error: 'Too many messages sent. Please wait a few minutes and try again, or call the practice on 021 696 4132.' })
+    return res.status(429).json({ error: 'Too many messages sent. Please wait a few minutes and try again, or call the practice on 021 696 4130.' })
   }
 
   const smtpHost = process.env.SMTP_HOST

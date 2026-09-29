@@ -70,7 +70,7 @@ Place the following images in the `public/images/` directory:
 ## Contact Information
 
 - **Location**: 226 Thornton Road, Belthorn, Cape Town, 7784
-- **Phone**: 021 696 4132
+- **Phone**: 021 696 4130
 - **Email**: info@drmagerman.co.za
 
 ## Operating Hours

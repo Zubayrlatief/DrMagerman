@@ -45,7 +45,7 @@ const routes = [
       seo: {
         title: 'Contact & Book Appointment | General Practitioner Cape Town – Dr Magerman',
         description:
-          'Book an appointment with Dr Magerman, general practitioner in Cape Town. Located at 226 Thornton Road, Lawson Place, Belthorn 7784. Phone 021 696 4132, email info@drmagerman.co.za. Walk-ins welcome during consulting hours.',
+          'Book an appointment with Dr Magerman, general practitioner in Cape Town. Located at 226 Thornton Road, Lawson Place, Belthorn 7784. Phone 021 696 4130, email info@drmagerman.co.za. Walk-ins welcome during consulting hours.',
         keywords: `${KW_GP}, book GP appointment Cape Town, doctor contact Belthorn, walk-in GP Cape Town, Lawson Place Thornton Road`
       }
     }
