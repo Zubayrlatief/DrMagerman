@@ -10,7 +10,12 @@
       <svg class="hours-closure-notice__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" fill="currentColor"/>
       </svg>
-      <p>
+      <p v-if="outageActive">
+        <strong>Communication system down:</strong>
+        Our phone and email systems are currently unavailable.
+        Walk-ins are welcome between {{ outage.walkInHours }}.
+      </p>
+      <p v-else>
         <strong>Temporary closure:</strong>
         <template v-if="active">
           The practice is closed from {{ closure.label }} and is not consulting during this period.
@@ -28,6 +33,7 @@
 <script setup>
 import { computed } from 'vue'
 import {
+  COMMUNICATION_OUTAGE,
   TEMPORARY_CLOSURE,
   isTemporaryClosureActive,
   shouldShowTemporaryClosureNotice
@@ -42,7 +48,9 @@ defineProps({
 })
 
 const closure = TEMPORARY_CLOSURE
-const visible = computed(() => shouldShowTemporaryClosureNotice())
+const outage = COMMUNICATION_OUTAGE
+const outageActive = computed(() => outage.enabled)
+const visible = computed(() => outage.enabled || shouldShowTemporaryClosureNotice())
 const active = computed(() => isTemporaryClosureActive())
 </script>
 

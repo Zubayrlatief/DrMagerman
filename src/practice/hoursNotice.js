@@ -1,3 +1,9 @@
+/** Communication outage — set `enabled: false` once phone/email are restored. */
+export const COMMUNICATION_OUTAGE = {
+  enabled: true,
+  walkInHours: '09:00 – 12:30 and 15:00 – 17:30'
+}
+
 /** Temporary closure — remove or set `enabled: false` after the period ends. */
 export const TEMPORARY_CLOSURE = {
   enabled: false,
