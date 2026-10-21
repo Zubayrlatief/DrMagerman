@@ -1,6 +1,6 @@
 /** Communication outage — set `enabled: false` once phone/email are restored. */
 export const COMMUNICATION_OUTAGE = {
-  enabled: true,
+  enabled: false,
   walkInHours: '09:00 – 12:30 and 15:00 – 17:30'
 }
 
