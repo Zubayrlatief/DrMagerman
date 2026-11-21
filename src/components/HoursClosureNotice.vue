@@ -32,13 +32,8 @@
         Walk-ins are welcome between {{ outage.walkInHours }}.
       </p>
       <p v-else>
-        <strong>{{ closure.title }}:</strong>
-        <template v-if="active">
-          The practice is closed and reopens on {{ closure.reopensOn }}.
-        </template>
-        <template v-else>
-          The practice closes on {{ closure.closesOn }} and reopens on {{ closure.reopensOn }}.
-        </template>
+        <strong>{{ closure.title }}</strong>
+        {{ active ? closure.activeText : closure.upcomingText }}
       </p>
     </div>
   </div>
