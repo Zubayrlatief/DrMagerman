@@ -12,6 +12,7 @@ export const COMMUNICATION_OUTAGE = {
 export const TEMPORARY_CLOSURE = {
   enabled: true,
   title: 'Festive season closure',
+  theme: 'festive', // Christmas styling; remove for a plain notice
   start: '2026-12-19',
   end: '2027-01-05',
   closesOn: 'Friday, 18 December 2026',
