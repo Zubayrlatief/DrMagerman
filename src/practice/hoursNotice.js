@@ -4,13 +4,18 @@ export const COMMUNICATION_OUTAGE = {
   walkInHours: '09:00 – 12:30 and 15:00 – 17:30'
 }
 
-/** Temporary closure — remove or set `enabled: false` after the period ends. */
+/**
+ * Temporary closure. The notice shows from now until `end` and hides itself
+ * on the reopening day, so nothing needs switching off afterwards.
+ * `start` = first full day closed, `end` = last day closed (YYYY-MM-DD).
+ */
 export const TEMPORARY_CLOSURE = {
-  enabled: false,
-  start: '2026-07-16',
-  end: '2026-07-26',
-  label: '16–26 July 2026',
-  resumeDate: 'Monday, 27 July 2026'
+  enabled: true,
+  title: 'Festive season closure',
+  start: '2026-12-19',
+  end: '2027-01-05',
+  closesOn: 'Friday, 18 December 2026',
+  reopensOn: 'Wednesday, 6 January 2027'
 }
 
 function toLocalDayString(date) {

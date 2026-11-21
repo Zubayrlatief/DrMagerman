@@ -16,14 +16,12 @@
         Walk-ins are welcome between {{ outage.walkInHours }}.
       </p>
       <p v-else>
-        <strong>Temporary closure:</strong>
+        <strong>{{ closure.title }}:</strong>
         <template v-if="active">
-          The practice is closed from {{ closure.label }} and is not consulting during this period.
-          Regular hours resume on {{ closure.resumeDate }}.
+          The practice is closed and reopens on {{ closure.reopensOn }}.
         </template>
         <template v-else>
-          The practice will be temporarily closed from {{ closure.label }}.
-          Regular consulting hours resume on {{ closure.resumeDate }}.
+          The practice closes on {{ closure.closesOn }} and reopens on {{ closure.reopensOn }}.
         </template>
       </p>
     </div>
